@@ -3,8 +3,11 @@
 import { Reveal, Stagger, StaggerItem } from "./reveal";
 import { BookOpen, ExternalLink, Star } from "lucide-react";
 import { RETAILERS, GOODREADS_URL } from "@/lib/retailers";
+import { ShareButtons } from "./share-buttons";
 
 export function BuySection() {
+  const primary = RETAILERS.find((r) => r.tier === "primary")!;
+
   return (
     <section
       id="buy"
@@ -44,13 +47,18 @@ export function BuySection() {
                 </span>
               </div>
             </Reveal>
+            <Reveal delay={0.22}>
+              <div className="mt-6">
+                <ShareButtons />
+              </div>
+            </Reveal>
           </div>
 
           <div className="lg:col-span-7">
             <Stagger className="grid grid-cols-1 gap-px overflow-hidden border border-paper/10 bg-paper/10 sm:grid-cols-2">
               {RETAILERS.map((r) => (
                 <StaggerItem key={r.name} className="group relative">
-                  <span className="pointer-events-none absolute left-0 top-0 z-20 h-full w-[2px] origin-top scale-y-0 bg-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-y-100" />
+                  <span className="pointer-events-none absolute left-0 top-0 z-20 h-full w-[2px] origin-top scale-y-0 bg-gold transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-y-100" aria-hidden />
                   <a
                     href={r.href}
                     target="_blank"
@@ -71,7 +79,6 @@ export function BuySection() {
               ))}
             </Stagger>
 
-            {/* Goodreads secondary row */}
             <Reveal delay={0.1}>
               <a
                 href={GOODREADS_URL}

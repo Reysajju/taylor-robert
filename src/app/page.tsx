@@ -4,6 +4,8 @@ import { BackToTop } from "@/components/site/back-to-top";
 import { Hero } from "@/components/site/hero";
 import { AboutAuthor } from "@/components/site/about-author";
 import { BookShowcase } from "@/components/site/book-showcase";
+import { StatsBar } from "@/components/site/stats-bar";
+import { ChapterPreview } from "@/components/site/chapter-preview";
 import { Excerpt } from "@/components/site/excerpt";
 import { Endorsements } from "@/components/site/endorsements";
 import { BuySection } from "@/components/site/buy-section";
@@ -18,6 +20,8 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <BookShowcase />
+        <StatsBar />
+        <ChapterPreview />
         <Excerpt />
         <AboutAuthor />
         <Endorsements />

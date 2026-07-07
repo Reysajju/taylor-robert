@@ -2,6 +2,7 @@
 
 import { Reveal } from "./reveal";
 import { GOODREADS_URL } from "@/lib/retailers";
+import { ShareButtons } from "./share-buttons";
 
 const SOCIALS = [
   { label: "Goodreads", href: GOODREADS_URL },
@@ -110,9 +111,16 @@ export function SiteFooter() {
               <ul className="space-y-2.5 font-body text-base text-paper-mute">
                 <li>Wadsworth Publishing</li>
                 <li>True Crime / Criminal Justice</li>
-                <li>Hardcover · 289 pages</li>
-                <li>First Edition · 2026</li>
+                <li>Paperback &middot; 289 pages</li>
+                <li>First Edition &middot; 2026</li>
               </ul>
+            </div>
+
+            <div>
+              <p className="font-mono-dossier mb-4 text-[0.55rem] tracking-label text-paper-mute/50">
+                SHARE THIS FILE
+              </p>
+              <ShareButtons />
             </div>
 
             <div>
