@@ -135,9 +135,17 @@ export function Hero() {
           transition={{ duration: 1.1, delay: 0.35, ease }}
         >
           <div className="relative w-[min(78vw,22rem)] sm:w-[min(60vw,24rem)] lg:w-[22rem]">
-            {/* Glow behind the cover */}
+            {/* Multi-layer glow behind the cover — rust + gold + deep shadow */}
             <div
-              className="absolute -inset-6 rounded-lg bg-rust/10 blur-3xl"
+              className="absolute -inset-8 rounded-xl bg-rust/[0.08] blur-[60px]"
+              aria-hidden
+            />
+            <div
+              className="absolute -inset-4 rounded-lg bg-gold/[0.06] blur-[40px]"
+              aria-hidden
+            />
+            <div
+              className="absolute -inset-12 rounded-2xl bg-charcoal-deep/50 blur-[80px]"
               aria-hidden
             />
             <div

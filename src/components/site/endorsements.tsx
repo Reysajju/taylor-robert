@@ -18,7 +18,7 @@ export function Endorsements() {
   return (
     <section
       id="voices"
-      className="concrete-texture relative overflow-hidden border-t border-paper/10 bg-charcoal-soft py-24 sm:py-32"
+      className="grain-overlay concrete-texture relative overflow-hidden border-t border-paper/10 bg-charcoal-soft py-24 sm:py-32"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <Reveal className="mb-16 flex items-center gap-4">
@@ -37,7 +37,7 @@ export function Endorsements() {
             >
               &ldquo;
             </span>
-            <blockquote className="relative z-10 font-display text-[clamp(1.4rem,2.6vw,2.1rem)] font-medium italic leading-[1.35] tracking-display text-paper">
+            <blockquote className="relative z-10 font-display text-[clamp(1.4rem,2.6vw,2.1rem)] font-medium italic leading-[1.35] tracking-display text-paper/90">
               The real conflict is the inner conflict. Beyond armies of
               occupations and the hecatombs of extermination camps, there are
               two irreconcilable enemies in the depth of every soul: good and
@@ -59,7 +59,7 @@ export function Endorsements() {
 
         {/* Thesis pull-quote */}
         <Reveal delay={0.1}>
-          <figure className="mx-auto mt-20 max-w-3xl border-l-2 border-rust pl-7">
+          <figure className="relative mx-auto mt-20 max-w-3xl border-l-2 border-rust/80 bg-charcoal/30 py-5 pl-7 pr-4">
             <Quote className="h-6 w-6 text-rust" />
             <blockquote className="mt-4 font-body text-xl leading-relaxed text-paper sm:text-2xl">
               &ldquo;Sometimes history is dark, but recognizing this darkness and

@@ -20,9 +20,11 @@ export function AboutAuthor() {
         </Reveal>
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Portrait — using real author photo */}
+          {/* Portrait — real author photo with noir grading */}
           <Reveal direction="right" className="lg:col-span-5">
             <div className="relative mx-auto max-w-sm">
+              {/* Subtle ambient glow behind the frame */}
+              <div className="absolute -inset-3 rounded-sm bg-gold/[0.03] blur-2xl" aria-hidden />
               {/* Frame */}
               <div className="relative border border-paper/15 p-3">
                 <div className="relative aspect-[4/5] overflow-hidden bg-charcoal-deep">
@@ -33,11 +35,14 @@ export function AboutAuthor() {
                     sizes="(max-width: 640px) 85vw, (max-width: 1024px) 24rem, 20rem"
                     priority={false}
                     quality={95}
-                    className="object-cover object-top"
+                    className="object-cover object-top contrast-110 brightness-[0.93]"
                   />
-                  {/* Dark tone wash to seat the portrait into the noir page */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-charcoal/10" />
-                  <div className="absolute inset-0 bg-charcoal/10 mix-blend-multiply" />
+                  {/* Vignette — darkened edges for cinematic noir depth */}
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(8,8,7,0.7)_100%)]" />
+                  {/* Bottom fade — seamless blend into dark page */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/30 to-transparent" />
+                  {/* Warm noir color grading tint */}
+                  <div className="absolute inset-0 bg-rust/[0.04] mix-blend-overlay" />
                   {/* Corner ticks — dossier photo feel */}
                   <span className="absolute left-2 top-2 h-3 w-3 border-l border-t border-gold/60" />
                   <span className="absolute right-2 top-2 h-3 w-3 border-r border-t border-gold/60" />

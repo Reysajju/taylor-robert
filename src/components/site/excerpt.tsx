@@ -42,14 +42,14 @@ export function Excerpt() {
   return (
     <section
       id="excerpt"
-      className="paper-texture relative overflow-hidden border-t-2 border-b-2 border-charcoal/80 py-24 sm:py-32"
+      className="concrete-texture bg-charcoal relative overflow-hidden border-t-2 border-b-2 border-paper/10 py-24 sm:py-32"
     >
-      {/* Faint horizontal ruled lines — typewriter page */}
+      {/* Faint horizontal ruled lines — typewriter page on dark surface */}
       <div
         className="absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(to bottom, transparent 0, transparent 31px, #0f0f0e 31px, #0f0f0e 32px)",
+            "repeating-linear-gradient(to bottom, transparent 0, transparent 31px, #ede8dd 31px, #ede8dd 32px)",
         }}
         aria-hidden
       />
@@ -61,15 +61,15 @@ export function Excerpt() {
             <span className="font-mono-dossier text-[0.65rem] tracking-label text-rust">
               § 02 — THE EXCERPT
             </span>
-            <span className="h-px flex-1 bg-charcoal/20" />
+            <span className="h-px flex-1 bg-paper/15" />
             {/* Declassify stamp that reveals */}
             <div className="relative">
-              <span className="font-mono-dossier inline-flex items-center gap-1.5 border border-charcoal/30 px-2.5 py-1 text-[0.5rem] tracking-label text-charcoal/50">
+              <span className="font-mono-dossier inline-flex items-center gap-1.5 border border-paper/15 px-2.5 py-1 text-[0.5rem] tracking-label text-paper/50">
                 <Lock className="h-2.5 w-2.5" />
                 CLASSIFIED
               </span>
               <motion.span
-                className="font-mono-dossier absolute inset-0 flex items-center justify-center gap-1.5 border border-rust/50 bg-paper px-2.5 py-1 text-[0.5rem] tracking-label text-rust"
+                className="font-mono-dossier absolute inset-0 flex items-center justify-center gap-1.5 border border-gold/50 bg-charcoal-deep px-2.5 py-1 text-[0.5rem] tracking-label text-gold"
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={
                   headerInView
@@ -86,20 +86,20 @@ export function Excerpt() {
         </div>
 
         <Reveal>
-          <p className="font-mono-dossier mb-2 text-[0.6rem] tracking-label text-charcoal/50">
+          <p className="font-mono-dossier mb-2 text-[0.6rem] tracking-label text-paper/50">
             DOCUMENT: INTRODUCTION &middot; PAGES iii&ndash;iv
           </p>
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.02] tracking-display text-charcoal">
+          <h2 className="font-display text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.02] tracking-display text-paper">
             From the Introduction
           </h2>
         </Reveal>
 
         {/* The typed document */}
         <Reveal delay={0.1}>
-          <article className="mt-10 font-body text-[1.075rem] leading-[1.85] text-charcoal/85 sm:text-lg sm:leading-[1.9]">
+          <article className="mt-10 font-body text-[1.075rem] leading-[1.85] text-paper/85 sm:text-lg sm:leading-[1.9]">
             <p className="first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-[4.2rem] first-letter:font-semibold first-letter:leading-[0.82] first-letter:text-rust">
               We must understand and accept that{" "}
-              <Redacted delay={0.2} className="font-semibold text-charcoal">
+              <Redacted delay={0.2} className="font-semibold text-paper">
                 evil exists
               </Redacted>{" "}
               in the world and acknowledge that some of our fellow human beings
@@ -138,18 +138,18 @@ export function Excerpt() {
 
         {/* Signature / attribution */}
         <Reveal delay={0.1}>
-          <div className="mt-10 flex items-center justify-between border-t border-charcoal/15 pt-6">
+          <div className="mt-10 flex items-center justify-between border-t border-paper/10 pt-6">
             <div>
-              <p className="font-display text-sm font-semibold italic text-charcoal">
+              <p className="font-display text-sm font-semibold italic text-paper">
                 &mdash; Robert B. Taylor
               </p>
-              <p className="font-mono-dossier mt-1 text-[0.55rem] tracking-label text-charcoal/50">
+              <p className="font-mono-dossier mt-1 text-[0.55rem] tracking-label text-paper-dim">
                 FROM &ldquo;WHERE EVIL DWELLS: PERDITION AWAITS&rdquo;
               </p>
             </div>
             <a
               href="#buy"
-              className="group inline-flex items-center gap-2 border border-charcoal/40 px-5 py-3 font-mono-dossier text-[0.65rem] tracking-label text-charcoal transition-colors hover:bg-charcoal hover:text-paper"
+              className="group inline-flex items-center gap-2 border border-paper/30 px-5 py-3 font-mono-dossier text-[0.65rem] tracking-label text-paper transition-colors hover:border-gold hover:bg-gold/10 hover:text-gold"
             >
               CONTINUE READING
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />

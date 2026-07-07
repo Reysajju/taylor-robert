@@ -22,3 +22,33 @@ Stage Summary:
 - All styles maintain cohesive noir/investigative theme: charcoal backgrounds (#0f0f0e), paper text (#ede8dd), gold accents (#b08d57), rust CTAs (#7a2e1d)
 - Complete book landing page fully functional with: Hero, Book Showcase, Excerpt (with redaction animations), Author section, Endorsements, Buy section (4 retailers), Newsletter signup, Footer
 - Dev server confirmed working via Caddy proxy on port 81
+
+---
+Task ID: 2
+Agent: webDevReview Cron
+Task: QA testing, style improvements, and new features
+
+Work Log:
+- QA: Tested full page rendering — all 8 sections present, no console errors, all images loading
+- QA: Verified navigation links (Excerpt, Author, Buy) work with smooth scroll
+- QA: Tested mobile viewport (375x812) — responsive layout, hamburger menu, mobile menu overlay
+- QA: Tested newsletter form, retailer links, back-to-top functionality
+- CRITICAL FIX: Converted Excerpt section from light `paper-texture` (bg #ede8dd) to dark `concrete-texture bg-charcoal` (bg #0f0f0e) — this was the biggest theme inconsistency breaking noir immersion
+- Updated all Excerpt text colors: headings, body, stamps, borders, buttons all now use paper/gold on dark background
+- Enhanced hero with multi-layer atmospheric glow (rust + gold + deep shadow blur layers behind book cover)
+- Enhanced author photo with: vignette effect (radial gradient darkening edges), noir color grading (rust/4% overlay), contrast-110 + brightness-95 CSS filters, ambient gold glow behind frame
+- Created ReadingProgress component: thin gold gradient bar at viewport top, fills on scroll, z-60 above everything
+- Created BackToTop component: noir-styled button (charcoal-deep bg, gold border, ArrowUp icon), appears after 80vh scroll, smooth scroll to top
+- Redesigned mobile menu: full-screen dark overlay with backdrop blur, numbered navigation items (01-04), large display-font links, staggered animation delays, "DOSSIER NAVIGATION" header, bottom metadata bar, body scroll lock when open
+- Enhanced nav: added "Buy" link to desktop nav, gold glow on hover for logo, shadow effect on Buy button hover, improved backdrop blur on scroll
+- Enhanced endorsements section: added grain-overlay, improved pull-quote styling with dark bg panel, epigraph text opacity tuning
+- Added CSS: gold-pulse keyframes, subtle-rise animation, dust-float animation, focus-visible outlines (gold), dark img placeholder background
+- Verified all section backgrounds are dark via computed styles: excerpt/author/buy = rgb(15,15,14), voices = rgb(22,22,19), newsletter = rgb(8,8,7)
+- ESLint clean (only pre-existing error in examples/websocket/frontend.tsx)
+
+Stage Summary:
+- All sections now use consistent dark noir backgrounds — zero light sections remain
+- 3 new UI features: reading progress bar, back-to-top button, full-screen mobile menu
+- Enhanced atmospheric effects: multi-layer hero glow, author photo noir grading with vignette, improved endorsements styling
+- Mobile experience significantly improved with full-screen overlay menu
+- All QA passed: no console errors, all navigation working, responsive design verified
