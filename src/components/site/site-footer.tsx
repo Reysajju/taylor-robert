@@ -14,6 +14,8 @@ const NAV = [
   { label: "The Book", href: "#book" },
   { label: "Excerpt", href: "#excerpt" },
   { label: "Author", href: "#author" },
+  { label: "Timeline", href: "#timeline" },
+  { label: "FAQ", href: "#faq" },
   { label: "Buy", href: "#buy" },
 ];
 
@@ -134,6 +136,14 @@ export function SiteFooter() {
                     className="link-underline hover:text-paper"
                   >
                     Press &amp; media
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#press"
+                    className="link-underline hover:text-paper"
+                  >
+                    Press kit
                   </a>
                 </li>
                 <li>

@@ -43,7 +43,7 @@ export function Newsletter() {
   return (
     <section
       id="newsletter"
-      className="grain-overlay relative overflow-hidden border-t border-paper/10 bg-charcoal-deep py-24 sm:py-32"
+      className="grain-overlay section-transition relative overflow-hidden border-t border-paper/10 bg-charcoal-deep py-24 sm:py-32"
     >
       {/* Faint backdrop type */}
       <span

@@ -47,7 +47,7 @@ export function ChapterPreview() {
   return (
     <section
       id="chapters"
-      className="grain-overlay concrete-texture relative overflow-hidden border-t border-paper/10 bg-charcoal-deep py-24 sm:py-32"
+      className="grain-overlay concrete-texture section-transition relative overflow-hidden border-t border-paper/10 bg-charcoal-deep py-24 sm:py-32"
     >
       {/* Faint grid overlay */}
       <div

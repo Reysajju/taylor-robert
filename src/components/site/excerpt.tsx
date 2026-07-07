@@ -60,6 +60,7 @@ export function Excerpt() {
           <div className="flex flex-wrap items-center gap-4">
             <span className="font-mono-dossier text-[0.65rem] tracking-label text-rust">
               § 02 — THE EXCERPT
+              <span className="typewriter-cursor" />
             </span>
             <span className="h-px flex-1 bg-paper/15" />
             {/* Declassify stamp that reveals */}
@@ -88,6 +89,7 @@ export function Excerpt() {
         <Reveal>
           <p className="font-mono-dossier mb-2 text-[0.6rem] tracking-label text-paper/50">
             DOCUMENT: INTRODUCTION &middot; PAGES iii&ndash;iv
+            <span className="typewriter-cursor" />
           </p>
           <h2 className="font-display text-[clamp(2rem,4.5vw,3.4rem)] font-semibold leading-[1.02] tracking-display text-paper">
             From the Introduction

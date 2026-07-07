@@ -8,15 +8,32 @@ const LINKS = [
   { href: "#book", label: "The Book" },
   { href: "#excerpt", label: "Excerpt" },
   { href: "#author", label: "Author" },
+  { href: "#faq", label: "FAQ" },
   { href: "#buy", label: "Buy" },
 ];
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+
+      // Track active section for gold underline highlight
+      const sections = LINKS.map((l) => l.href.replace("#", ""));
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -25,7 +42,9 @@ export function SiteNav() {
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   return (
@@ -33,7 +52,7 @@ export function SiteNav() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-charcoal/90 backdrop-blur-lg border-b border-paper/10"
+          ? "bg-charcoal/90 backdrop-blur-lg border-b border-paper/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
           : "bg-transparent border-b border-transparent",
       )}
     >
@@ -64,7 +83,12 @@ export function SiteNav() {
             <a
               key={l.href}
               href={l.href}
-              className="link-underline font-mono-dossier text-[0.7rem] tracking-label text-paper-mute transition-colors duration-300 hover:text-paper"
+              className={cn(
+                "link-underline font-mono-dossier text-[0.7rem] tracking-label transition-colors duration-300",
+                activeSection === l.href.replace("#", "")
+                  ? "text-paper link-underline-active"
+                  : "text-paper-mute hover:text-paper",
+              )}
             >
               {l.label}
             </a>
@@ -122,7 +146,7 @@ export function SiteNav() {
                 {l.label}
               </span>
               <span className="ml-auto text-paper-mute/30 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gold/60">
-                →
+                &rarr;
               </span>
             </a>
           ))}
@@ -142,7 +166,7 @@ export function SiteNav() {
           <div className="mt-auto pb-8 pt-8">
             <div className="rule-gold mb-4" />
             <p className="font-mono-dossier text-[0.5rem] tracking-label text-paper-mute/30">
-              WHERE EVIL DWELLS &middot; PERDITION AWATS &middot; 2026
+              WHERE EVIL DWELLS &middot; PERDITION AWAITS &middot; 2026
             </p>
           </div>
         </div>

@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { BookCover } from "./book-cover";
 import { useTilt } from "@/hooks/use-tilt";
+import { DustParticles } from "./dust-particles";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -24,16 +25,35 @@ const item = {
 export function Hero() {
   const { ref, tilt } = useTilt<HTMLDivElement>(true);
 
+  // Parallax mouse tracking for the background texture
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const smoothX = useSpring(mouseX, { stiffness: 30, damping: 25 });
+  const smoothY = useSpring(mouseY, { stiffness: 30, damping: 25 });
+  const bgX = useTransform(smoothX, [0, 1], ["-8px", "8px"]);
+  const bgY = useTransform(smoothY, [0, 1], ["-8px", "8px"]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width);
+    mouseY.set((e.clientY - rect.top) / rect.height);
+  };
+
   return (
     <section
       id="top"
       className="grain-drift vignette relative flex min-h-[100svh] items-center overflow-hidden bg-charcoal"
+      onMouseMove={handleMouseMove}
     >
-      {/* Slow-panning atmospheric background image */}
+      {/* Slow-panning atmospheric background image with parallax */}
       <div className="absolute inset-0 z-0">
-        <div
+        <motion.div
           className="slow-pan absolute inset-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url(/assets/hero-texture.png)" }}
+          style={{
+            backgroundImage: "url(/assets/hero-texture.png)",
+            x: bgX,
+            y: bgY,
+          }}
         />
         {/* Charcoal wash to guarantee text contrast even before image loads */}
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/70 to-charcoal" />
@@ -50,6 +70,9 @@ export function Hero() {
         }}
         aria-hidden
       />
+
+      {/* Floating dust particles */}
+      <DustParticles />
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-5 pb-20 pt-32 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:px-12 lg:pb-24 lg:pt-28">
         {/* Left: text */}
@@ -99,7 +122,7 @@ export function Hero() {
           >
             <a
               href="#excerpt"
-              className="group inline-flex items-center justify-center gap-2.5 bg-rust px-7 py-4 font-mono-dossier text-[0.72rem] tracking-label text-paper transition-colors hover:bg-rust-bright"
+              className="group inline-flex items-center justify-center gap-2.5 bg-rust px-7 py-4 font-mono-dossier text-[0.72rem] tracking-label text-paper transition-all duration-300 hover:bg-rust-bright hover:shadow-[0_0_24px_rgba(122,46,29,0.25)]"
             >
               <BookOpen className="h-4 w-4" />
               Read an Excerpt
@@ -108,7 +131,7 @@ export function Hero() {
               href="https://www.amazon.com/WHERE-EVIL-DWELLS-PERDITION-AWAITS/dp/B0H2KK7RJQ"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2.5 border border-paper/30 px-7 py-4 font-mono-dossier text-[0.72rem] tracking-label text-paper transition-colors hover:border-gold hover:text-gold"
+              className="group inline-flex items-center justify-center gap-2.5 border border-paper/30 px-7 py-4 font-mono-dossier text-[0.72rem] tracking-label text-paper transition-all duration-300 hover:border-gold hover:text-gold hover:shadow-[0_0_16px_rgba(176,141,87,0.08)]"
             >
               Buy the Book
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
