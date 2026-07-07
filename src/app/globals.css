@@ -1,0 +1,421 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   CONCRETE & SHADOW — Investigative Noir Design System
+   Where Evil Dwells: Perdition Awaits
+   ============================================================ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+
+  /* Noir palette */
+  --color-charcoal: #0f0f0e;
+  --color-charcoal-soft: #161613;
+  --color-charcoal-raised: #1d1c19;
+  --color-charcoal-deep: #080807;
+  --color-paper: #ede8dd;
+  --color-paper-dim: #d8d2c3;
+  --color-paper-mute: #b8b1a1;
+  --color-rust: #7a2e1d;
+  --color-rust-bright: #9c3a25;
+  --color-gold: #b08d57;
+  --color-gold-soft: #c9a86f;
+  --color-gold-dim: #8a6e42;
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Noir dark theme as the default (site is dark-dominant) */
+  --background: #0f0f0e;
+  --foreground: #ede8dd;
+  --card: #161613;
+  --card-foreground: #ede8dd;
+  --popover: #161613;
+  --popover-foreground: #ede8dd;
+  --primary: #7a2e1d;
+  --primary-foreground: #ede8dd;
+  --secondary: #1d1c19;
+  --secondary-foreground: #ede8dd;
+  --muted: #1d1c19;
+  --muted-foreground: #b8b1a1;
+  --accent: #b08d57;
+  --accent-foreground: #0f0f0e;
+  --destructive: #9c3a25;
+  --border: rgba(237, 232, 221, 0.12);
+  --input: rgba(237, 232, 221, 0.14);
+  --ring: #b08d57;
+  --chart-1: #7a2e1d;
+  --chart-2: #b08d57;
+  --chart-3: #9c3a25;
+  --chart-4: #c9a86f;
+  --chart-5: #8a6e42;
+  --sidebar: #161613;
+  --sidebar-foreground: #ede8dd;
+  --sidebar-primary: #b08d57;
+  --sidebar-primary-foreground: #0f0f0e;
+  --sidebar-accent: #1d1c19;
+  --sidebar-accent-foreground: #ede8dd;
+  --sidebar-border: rgba(237, 232, 221, 0.12);
+  --sidebar-ring: #b08d57;
+}
+
+.dark {
+  --background: #0f0f0e;
+  --foreground: #ede8dd;
+  --card: #161613;
+  --card-foreground: #ede8dd;
+  --popover: #161613;
+  --popover-foreground: #ede8dd;
+  --primary: #7a2e1d;
+  --primary-foreground: #ede8dd;
+  --secondary: #1d1c19;
+  --secondary-foreground: #ede8dd;
+  --muted: #1d1c19;
+  --muted-foreground: #b8b1a1;
+  --accent: #b08d57;
+  --accent-foreground: #0f0f0e;
+  --destructive: #9c3a25;
+  --border: rgba(237, 232, 221, 0.12);
+  --input: rgba(237, 232, 221, 0.14);
+  --ring: #b08d57;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Offset anchor jumps for the fixed top nav */
+  section[id],
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body), Georgia, "Times New Roman", serif;
+    font-feature-settings: "kern", "liga", "onum";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: #7a2e1d;
+    color: #ede8dd;
+  }
+
+  /* Custom scrollbar — dossier filing-cabinet feel */
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #080807;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3a3935;
+    border: 3px solid #080807;
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b08d57;
+  }
+  html {
+    scrollbar-color: #3a3935 #080807;
+  }
+}
+
+/* ============================================================
+   Typography utilities
+   ============================================================ */
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display), Georgia, serif;
+  }
+  .font-body {
+    font-family: var(--font-body), Georgia, serif;
+  }
+  .font-mono-dossier {
+    font-family: var(--font-mono), "Courier New", monospace;
+  }
+
+  /* Editorial headline tracking */
+  .tracking-display {
+    letter-spacing: -0.02em;
+  }
+  .tracking-label {
+    letter-spacing: 0.22em;
+  }
+  .tracking-label-sm {
+    letter-spacing: 0.16em;
+  }
+
+  /* Dossier monospace label */
+  .dossier-label {
+    font-family: var(--font-mono), "Courier New", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.6875rem;
+    font-weight: 500;
+  }
+
+  /* Paper-grain texture overlay for dark sections */
+  .grain-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+
+  /* Concrete micro-texture */
+  .concrete-texture {
+    background-image:
+      radial-gradient(circle at 18% 22%, rgba(176, 141, 87, 0.04) 0%, transparent 38%),
+      radial-gradient(circle at 82% 78%, rgba(122, 46, 29, 0.05) 0%, transparent 42%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  /* Paper texture for light sections */
+  .paper-texture {
+    background-color: #ede8dd;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(122, 46, 29, 0.03) 0%, transparent 40%),
+      radial-gradient(circle at 88% 82%, rgba(138, 110, 66, 0.04) 0%, transparent 45%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='0.4'/%3E%3C/svg%3E");
+  }
+
+  /* Animated drifting grain for hero (very slow) */
+  .grain-drift::after {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='dn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23dn)' opacity='0.6'/%3E%3C/svg%3E");
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+    animation: grain-drift 8s steps(6) infinite;
+    z-index: 2;
+  }
+
+  /* Gold underline that draws left-to-right on hover */
+  .link-underline {
+    background-image: linear-gradient(to right, #b08d57, #b08d57);
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    transition: background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    padding-bottom: 2px;
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+  .link-underline-active {
+    background-size: 100% 1px;
+  }
+
+  /* Hairline divider in gold */
+  .rule-gold {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(176, 141, 87, 0.5) 18%,
+      rgba(176, 141, 87, 0.7) 50%,
+      rgba(176, 141, 87, 0.5) 82%,
+      transparent
+    );
+  }
+
+  /* Vignette for cinematic sections */
+  .vignette::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      rgba(8, 8, 7, 0.55) 100%
+    );
+    z-index: 1;
+  }
+
+  /* Stamp / classified border */
+  .classified-border {
+    box-shadow:
+      inset 0 0 0 1px rgba(176, 141, 87, 0.25),
+      inset 0 0 0 4px rgba(15, 15, 14, 1),
+      inset 0 0 0 5px rgba(176, 141, 87, 0.15);
+  }
+}
+
+@keyframes grain-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-3%, -2%);
+  }
+  20% {
+    transform: translate(2%, 3%);
+  }
+  30% {
+    transform: translate(-1%, 2%);
+  }
+  40% {
+    transform: translate(3%, -1%);
+  }
+  50% {
+    transform: translate(-2%, 1%);
+  }
+  60% {
+    transform: translate(1%, -3%);
+  }
+  70% {
+    transform: translate(-3%, 2%);
+  }
+  80% {
+    transform: translate(2%, -2%);
+  }
+  90% {
+    transform: translate(-1%, 3%);
+  }
+}
+
+/* Book cover "breathing" animation */
+@keyframes cover-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.018);
+  }
+}
+.cover-breathe {
+  animation: cover-breathe 8s ease-in-out infinite;
+}
+
+/* Slow pan for hero background image */
+@keyframes slow-pan {
+  0% {
+    transform: scale(1.08) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.14) translate(-1.5%, -1%);
+  }
+  100% {
+    transform: scale(1.08) translate(0, 0);
+  }
+}
+.slow-pan {
+  animation: slow-pan 32s ease-in-out infinite;
+}
+
+/* Redaction bar reveal */
+@keyframes redact-open {
+  0% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+}
+
+/* Marquee for the "as featured in" strip */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Blinking cursor for dossier labels (subtle) */
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.caret-blink {
+  animation: caret-blink 1.1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
