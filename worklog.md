@@ -251,3 +251,92 @@ Priority Recommendations for Next Phase:
 6. LOW: Create a dedicated 404 page with noir styling
 7. LOW: Add a "Contact" modal with a more detailed inquiry form (name, email, subject, message)
 8. LOW: Implement i18n (Spanish) version for broader audience reach
+
+---
+Task ID: 7
+Agent: Main Agent (Cron Review)
+Task: Phase 7 — Bug fixes, new features (Key Players, Reader Reviews), extensive styling improvements
+
+Work Log:
+- QA: Full agent-browser pass (desktop 1280x800 + mobile 375x812) — 14 sections rendering, zero console errors, all navigation verified
+- QA: Verified all section backgrounds remain dark (allDark: true across 14 sections)
+- QA: Verified events dates now correctly formatted (AUG 15, 2026 | SEP 22, 2026 | OCT 08, 2026 | NOV 03, 2026)
+- QA: Verified Key Players section renders all 4 gang profiles with ACTIVE/DORMANT status
+- QA: Verified Reader Reviews section renders 5 review cards with 30 star icons and 4.6 average rating
+- QA: Verified search modal now shows 13 results (added Subject Files and Reader Reviews)
+- QA: Mobile viewport tested (375x812) — 14 sections, 73 interactive elements, responsive layout
+- BUG FIX: Events section date formatting — `formatDate()` was concatenating "T00:00:00" to human-readable date strings ("August 15, 2026T00:00:00") producing invalid Date objects → NaN. Fixed by parsing the string directly with `new Date(dateStr)` and adding NaN fallback
+- Created KeyPlayers component: "SUBJECT FILES" section profiling 4 prison gangs (La EMe, Aryan Brotherhood, Black Guerrilla Family, Nuestra Familia) in a responsive 4-column grid with ACTIVE/DORMANT status badges (gold pulse-ring animation for ACTIVE), CLASSIFIED/FILE OPEN labels, corner-brackets, hover-lift, inner-glow, border-glow-hover effects
+- Created ReaderReviews component: "FIELD REPORTS" section with 4.6 average rating display (large gold number + star visualization), 5 review cards with star ratings (Star icons from lucide-react), alternating left/right offset layout, gold left-border accent, evidence-stamp badges (VERIFIED PURCHASE / ADVANCE COPY), reviewer credentials
+- Enhanced Nav: added "Subjects" and "Reviews" links (now 7 desktop nav items)
+- Enhanced Footer: added "Subjects" and "Reviews" to nav links (now 8 footer nav items)
+- Enhanced SearchModal: added "Subject Files" and "Reader Reviews" entries (now 13 searchable results)
+- Enhanced ChapterIndicator: added "#subjects" (SUBJECTS) and "#reviews" (REVIEWS) to section tracking map
+- Enhanced Excerpt section: added `fingerprint` texture overlay for atmospheric depth
+- Enhanced Endorsements section: added `grain-heavy` variant for denser grain texture
+- Enhanced Buy section: added `ink-blot` background pattern (radial gradient splatters in rust/gold)
+- Enhanced Press Kit: added `photocopy` effect on asset cards (slight contrast/brightness shift + inset shadow)
+- Enhanced Timeline cards: added `inner-glow` and `border-glow-hover` classes for richer hover feedback
+- Enhanced Key Players cards: replaced green/amber status dots with gold pulse-ring (ACTIVE) and muted (DORMANT) to match noir palette; added `inner-glow` and `border-glow-hover`
+- Created 13 new CSS utility classes in globals.css:
+  1. `.redacted-reveal` — hover to uncover hidden text (gold overlay slides away)
+  2. `.tape-mark` — half-peeled masking tape decoration at element top
+  3. `.ink-blot` — subtle dark radial gradient splatter pattern
+  4. `.photocopy` — slightly washed-out contrast/brightness with inset shadow
+  5. `.typewriter-line` — monospaced uppercase text with gold underline
+  6. `.pulse-ring` — animated expanding ring for status indicators (2s ease-out infinite)
+  7. `.fingerprint` — conic gradient circular smudge texture
+  8. `.dossier-stamp` — large rotated classified marker (rust color, 12deg rotation)
+  9. `.divider-diamond` — flex divider with center diamond shape
+  10. `.glitch-hover` — brief text-shadow glitch effect on hover (rust/gold offset)
+  11. `.crosshair-focus` — crosshair-style focus-visible indicator (gold rings)
+  12. `.border-glow-hover` — gradient border (gold→rust) that fades in on hover via mask-composite
+  13. `.inner-glow` — radial gradient light from top that appears on hover
+  14. `.grain-heavy` — heavier noise texture variant (higher baseFrequency, more octaves)
+  15. `.red-thread` — vertical rust gradient line (connects related elements)
+  16. `.stat-number` — tabular-nums display font for statistics
+- ESLint clean (only pre-existing error in examples/websocket/frontend.tsx)
+
+Stage Summary:
+- 1 bug fixed: Events section date formatting (undefined NaN, NaN → proper date display)
+- 2 new major features: Key Players / Gang Profiles section (4 gangs), Reader Reviews section (5 reviews, star ratings, 4.6 average)
+- Page now has 14 content sections + 6 floating utilities
+- 16 new CSS utility classes for richer atmospheric effects and micro-interactions
+- Enhanced existing sections with: fingerprint texture, grain-heavy variant, ink-blot pattern, photocopy effect, inner-glow, border-glow-hover, pulse-ring status indicators
+- All navigation, search, footer, and chapter indicator updated for new sections
+- All QA passed: 14 sections, all dark backgrounds, zero console errors, responsive on mobile
+
+Current Project Status Assessment:
+- The book landing page has 14 content sections + 6 floating utilities (ReadingProgress, BackToTop, NoirToggle, ThemeSwitcher, LoadingScreen, SearchModal)
+- Complete noir/investigative design system: charcoal/paper/gold/rust palette, grain textures, dossier aesthetic
+- 16 interactive features: Reading Progress Bar, Back to Top, Full-screen Mobile Menu, Animated Stats Counter, FAQ Accordion (keyboard nav), Parallax Hero, Active Nav Tracking, Table of Contents Modal, Film Noir Toggle, Theme Switcher (3 modes), Search Modal (Cmd+K, 13 results), Share Buttons, Quote Carousel, Contact Modal
+- 8 content features: Chapter Preview Cards, Timeline, FAQ, Press Kit, Dust Particles, Stats Bar, Key Players, Reader Reviews
+- Full SEO: OG tags, Twitter Cards, JSON-LD Book schema, proper title/description/keywords
+- Loading screen with noir "R" stamp animation
+- Cinematic page-frame edge vignette, smoke transitions, hover-lift, inner-glow, border-glow-hover, pulse-ring, fingerprint, ink-blot, photocopy, grain-heavy, redacted-reveal, glitch-hover, crosshair-focus, tape-mark, dossier-stamp, divider-diamond, red-thread, typewriter-line
+- 22+ CSS utility classes for atmospheric and decorative effects
+- All sections use consistent dark backgrounds, double-line section transitions, grain overlays
+- Typography hierarchy: Display (Fraunces), Body (Source Serif 4), Mono-dossier (IBM Plex Mono)
+- Custom scrollbar with gold gradient streak, focus-visible gold outlines, prefers-reduced-motion support
+- Newsletter API functional (Prisma + SQLite), Contact API functional (Prisma + SQLite)
+- All QA passed across desktop and mobile viewports
+
+Unresolved Issues / Risks:
+- Endorsement section still uses placeholder "SLOT 1/2 · PENDING" — real reviews needed after publication
+- "As Featured In" marquee lists publications that haven't featured the book yet — update post-publication
+- Press Kit download buttons show visual feedback but don't link to real files (placeholder behavior)
+- Book cover @2x was AI-upscaled from 668px — a true high-res scan from publisher would be ideal
+- JSON-LD ISBN field is empty — add when available from publisher
+- Theme Switcher modifies CSS custom properties globally — ensure no conflicts with future component additions
+- Reader Reviews use placeholder reviews — replace with real reviews after publication
+
+Priority Recommendations for Next Phase:
+1. HIGH: Connect Press Kit download buttons to real hosted files (book cover, headshot, press release PDF)
+2. HIGH: Add JSON-LD ISBN when available from publisher
+3. MEDIUM: Create a dedicated 404 page with noir styling (evidence-missing theme)
+4. MEDIUM: Add a loading/splash screen animation variation (case-file opening effect)
+5. MEDIUM: Add an "Audio Preview" section — a playable narrated excerpt
+6. MEDIUM: Create an interactive "Case Board" feature — pins/strings connecting key figures
+7. LOW: Implement i18n (Spanish) version for broader audience reach
+8. LOW: Add dark/light mode toggle (currently dark-only)
+9. LOW: Add a "Related Books" recommendation section

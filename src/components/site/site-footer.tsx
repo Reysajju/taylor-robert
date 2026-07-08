@@ -14,7 +14,9 @@ const SOCIALS = [
 const NAV = [
   { label: "The Book", href: "#book" },
   { label: "Excerpt", href: "#excerpt" },
+  { label: "Subjects", href: "#subjects" },
   { label: "Author", href: "#author" },
+  { label: "Reviews", href: "#reviews" },
   { label: "Timeline", href: "#timeline" },
   { label: "FAQ", href: "#faq" },
   { label: "Buy", href: "#buy" },

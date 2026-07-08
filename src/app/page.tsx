@@ -9,7 +9,9 @@ import { StatsBar } from "@/components/site/stats-bar";
 import { ChapterPreview } from "@/components/site/chapter-preview";
 import { Excerpt } from "@/components/site/excerpt";
 import { Timeline } from "@/components/site/timeline";
+import { KeyPlayers } from "@/components/site/key-players";
 import { Endorsements } from "@/components/site/endorsements";
+import { ReaderReviews } from "@/components/site/reader-reviews";
 import { FAQ } from "@/components/site/faq";
 import { PressKit } from "@/components/site/press-kit";
 import { BuySection } from "@/components/site/buy-section";
@@ -34,8 +36,10 @@ export default function Home() {
         <ChapterPreview />
         <Excerpt />
         <Timeline />
+        <KeyPlayers />
         <AboutAuthor />
         <Endorsements />
+        <ReaderReviews />
         <FAQ />
         <PressKit />
         <BuySection />

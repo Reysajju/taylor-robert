@@ -11,7 +11,7 @@ export function BuySection() {
   return (
     <section
       id="buy"
-      className="concrete-texture relative overflow-hidden border-t border-paper/10 bg-charcoal py-24 sm:py-32"
+      className="concrete-texture ink-blot relative overflow-hidden border-t border-paper/10 bg-charcoal py-24 sm:py-32"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <Reveal className="mb-16 flex items-center gap-4">

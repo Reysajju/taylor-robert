@@ -36,6 +36,11 @@ const SECTIONS = [
     href: "#timeline",
   },
   {
+    label: "Subject Files",
+    desc: "Gang profiles — La EMe, Aryan Brotherhood, BGF, Nuestra Familia",
+    href: "#subjects",
+  },
+  {
     label: "The Author",
     desc: "About Robert B. Taylor — LAPD, L.A. County Probation Chief",
     href: "#author",
@@ -44,6 +49,11 @@ const SECTIONS = [
     label: "Voices",
     desc: "Epigraph, pull-quote, and advance praise",
     href: "#voices",
+  },
+  {
+    label: "Reader Reviews",
+    desc: "Star ratings and early reader reactions",
+    href: "#reviews",
   },
   {
     label: "FAQ",

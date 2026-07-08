@@ -38,7 +38,9 @@ const EVENTS: EventItem[] = [
 ];
 
 function formatDate(dateStr: string): string {
-  const d = new Date(dateStr + "T00:00:00");
+  // Parse human-readable date like "August 15, 2026"
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return dateStr; // fallback to raw string
   const months = [
     "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC",

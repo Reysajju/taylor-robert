@@ -8,7 +8,9 @@ import { SearchModal } from "./search-modal";
 const LINKS = [
   { href: "#book", label: "The Book" },
   { href: "#excerpt", label: "Excerpt" },
+  { href: "#subjects", label: "Subjects" },
   { href: "#author", label: "Author" },
+  { href: "#reviews", label: "Reviews" },
   { href: "#faq", label: "FAQ" },
   { href: "#buy", label: "Buy" },
 ];

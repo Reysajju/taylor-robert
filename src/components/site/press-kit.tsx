@@ -53,7 +53,7 @@ function AssetCard({
   downloading: boolean;
 }) {
   return (
-    <div className="group relative border border-paper/10 bg-charcoal-soft/50 p-6 corner-brackets transition-all duration-500 hover:border-gold/30 hover:bg-charcoal-soft sm:p-7 overflow-hidden">
+    <div className="group relative border border-paper/10 bg-charcoal-soft/50 p-6 corner-brackets photocopy transition-all duration-500 hover:border-gold/30 hover:bg-charcoal-soft sm:p-7 overflow-hidden">
       {/* Corner accent on hover */}
       <div className="absolute right-0 top-0 h-8 w-8 border-r-2 border-t-2 border-gold/0 transition-all duration-500 group-hover:border-gold/40" aria-hidden />
 

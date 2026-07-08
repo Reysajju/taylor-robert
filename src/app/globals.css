@@ -693,6 +693,257 @@ html.noir-filter-active footer {
   transform: translateY(-100%);
 }
 
+/* ============================================================
+   Phase 7 — New atmospheric & decorative utilities
+   ============================================================ */
+
+/* Redacted text reveal — hover to uncover */
+.redacted-reveal {
+  position: relative;
+  display: inline;
+  cursor: pointer;
+}
+.redacted-reveal::after {
+  content: "";
+  position: absolute;
+  inset: -1px -2px;
+  background: rgba(176, 141, 87, 0.12);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: left center;
+  pointer-events: none;
+  z-index: 1;
+}
+.redacted-reveal:hover::after {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+/* Tape mark — half-peeled masking tape decoration */
+.tape-mark {
+  position: relative;
+}
+.tape-mark::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 48px;
+  height: 14px;
+  background: rgba(176, 141, 87, 0.08);
+  border: 1px solid rgba(176, 141, 87, 0.06);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Ink blot background — subtle dark splatter pattern */
+.ink-blot {
+  background-image:
+    radial-gradient(ellipse 120px 80px at 15% 25%, rgba(122, 46, 29, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 80px 120px at 85% 65%, rgba(176, 141, 87, 0.03) 0%, transparent 70%),
+    radial-gradient(circle 40px at 50% 50%, rgba(15, 15, 14, 0.08) 0%, transparent 100%);
+}
+
+/* Photocopy effect — slightly washed-out, skewed look */
+.photocopy {
+  filter: contrast(0.92) brightness(1.02);
+  box-shadow:
+    inset 0 0 60px rgba(237, 232, 221, 0.02),
+    0 0 0 1px rgba(237, 232, 221, 0.04);
+}
+
+/* Typewriter line — monospaced text with overstrike effect */
+.typewriter-line {
+  font-family: var(--font-mono), "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  position: relative;
+}
+.typewriter-line::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(176, 141, 87, 0.12);
+}
+
+/* Gold pulse ring — for status indicators */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.pulse-ring::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1px solid rgba(176, 141, 87, 0.3);
+  animation: pulse-ring 2s ease-out infinite;
+  pointer-events: none;
+}
+
+/* Fingerprint smudge — subtle circular texture */
+.fingerprint {
+  background-image:
+    radial-gradient(circle at 30% 40%, rgba(237, 232, 221, 0.015) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(237, 232, 221, 0.01) 0%, transparent 40%),
+    conic-gradient(from 45deg at 50% 50%,
+      transparent 0deg, rgba(237, 232, 221, 0.008) 90deg,
+      transparent 180deg, rgba(237, 232, 221, 0.008) 270deg,
+      transparent 360deg);
+}
+
+/* Dossier red stamp — large rotated classified marker */
+.dossier-stamp {
+  font-family: var(--font-mono), "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(122, 46, 29, 0.12);
+  transform: rotate(-12deg);
+  border: 3px solid rgba(122, 46, 29, 0.12);
+  padding: 0.3em 0.8em;
+  display: inline-block;
+}
+
+/* Divider with center diamond */
+.divider-diamond {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.divider-diamond::before,
+.divider-diamond::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(176, 141, 87, 0.2), transparent);
+}
+.divider-diamond > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6px;
+  height: 6px;
+  background: rgba(176, 141, 87, 0.3);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* Glitch text effect — brief offset on hover */
+.glitch-hover {
+  position: relative;
+}
+.glitch-hover:hover {
+  animation: glitch-text 0.3s steps(2) forwards;
+}
+@keyframes glitch-text {
+  0% { text-shadow: 2px 0 rgba(122, 46, 29, 0.5), -2px 0 rgba(176, 141, 87, 0.5); }
+  25% { text-shadow: -1px 0 rgba(122, 46, 29, 0.3), 1px 0 rgba(176, 141, 87, 0.3); }
+  50% { text-shadow: 1px 0 rgba(122, 46, 29, 0.4), -1px 0 rgba(176, 141, 87, 0.4); }
+  100% { text-shadow: 0 0 30px rgba(176, 141, 87, 0.08), 0 0 60px rgba(176, 141, 87, 0.04); }
+}
+
+/* Crosshair focus indicator */
+.crosshair-focus:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 1px rgba(176, 141, 87, 0.5),
+    0 0 0 4px rgba(15, 15, 14, 0.8),
+    0 0 0 5px rgba(176, 141, 87, 0.3);
+}
+
+/* Gradient border on hover */
+.border-glow-hover {
+  position: relative;
+  overflow: hidden;
+}
+.border-glow-hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(176,141,87,0.3), transparent 40%, transparent 60%, rgba(122,46,29,0.2)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.border-glow-hover:hover::before {
+  opacity: 1;
+}
+
+/* Number highlight — for stats/counts */
+.stat-number {
+  font-family: var(--font-display), Georgia, serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+/* Noise grain variant — heavier grain for texture variation */
+.grain-heavy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='nh'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nh)' opacity='0.7'/%3E%3C/svg%3E");
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+/* Red thread line — connects related elements */
+.red-thread {
+  position: relative;
+}
+.red-thread::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(122, 46, 29, 0.25) 20%,
+    rgba(122, 46, 29, 0.25) 80%,
+    transparent
+  );
+}
+
+/* Scroll indicator fade — fades elements as they approach viewport bottom */
+@keyframes fade-at-bottom {
+  0%, 70% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* Card inner glow — subtle inner light on hover */
+.inner-glow {
+  position: relative;
+}
+.inner-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(176, 141, 87, 0.03) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.inner-glow:hover::after {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -42,7 +42,7 @@ export function Excerpt() {
   return (
     <section
       id="excerpt"
-      className="concrete-texture smoke-transition bg-charcoal relative overflow-hidden border-t-2 border-b-2 border-paper/10 py-24 sm:py-32 file-tab"
+      className="concrete-texture smoke-transition fingerprint bg-charcoal relative overflow-hidden border-t-2 border-b-2 border-paper/10 py-24 sm:py-32 file-tab"
     >
       {/* Faint horizontal ruled lines — typewriter page on dark surface */}
       <div

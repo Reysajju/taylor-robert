@@ -244,7 +244,7 @@ function TimelineCard({
   return (
     <div
       className={cn(
-        "group cursor-default transition-all duration-500 rounded-sm p-3 -m-3 border border-transparent",
+        "group cursor-default transition-all duration-500 rounded-sm p-3 -m-3 border border-transparent inner-glow border-glow-hover",
         "hover:border-gold/40 hover:bg-charcoal-raised",
         align === "left" ? "text-left" : "text-right"
       )}
