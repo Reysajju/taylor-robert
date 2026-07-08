@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Reveal } from "./reveal";
+import { ScrambleHeading } from "./scramble-heading";
 import {
   Play,
   Pause,
@@ -179,7 +180,7 @@ export function AudioPreview() {
   return (
     <section
       id="audio-preview"
-      className="grain-overlay concrete-texture section-transition relative overflow-hidden border-t border-paper/10 bg-charcoal-soft"
+      className="grain-overlay concrete-texture section-transition atmosphere-fog relative overflow-hidden border-t border-paper/10 bg-charcoal-soft"
     >
       <div className="mx-auto max-w-5xl px-5 py-24 sm:px-8 lg:px-12">
         {/* Section header */}
@@ -191,9 +192,9 @@ export function AudioPreview() {
             <span className="h-px flex-1 bg-paper/10" />
           </div>
 
-          <h2 className="mt-6 font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold tracking-display text-paper text-glow-gold">
+          <ScrambleHeading className="mt-6 font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold tracking-display text-paper text-glow-gold">
             Hear the opening pages.
-          </h2>
+          </ScrambleHeading>
           <p className="mt-3 max-w-2xl text-paper-mute">
             AI-narrated excerpts from the Introduction and first chapters.
             Click a segment to listen.

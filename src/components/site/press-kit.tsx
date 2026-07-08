@@ -102,7 +102,7 @@ export function PressKit() {
   return (
     <section
       id="press"
-      className="concrete-texture section-transition scan-line relative overflow-hidden border-t border-paper/10 bg-charcoal-soft py-24 sm:py-32"
+      className="concrete-texture section-transition scan-line scanline-medium relative overflow-hidden border-t border-paper/10 bg-charcoal-soft py-24 sm:py-32"
     >
       <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8 lg:px-12">
         <Reveal className="mb-6 flex items-center gap-4">

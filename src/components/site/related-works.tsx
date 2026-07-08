@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal, Stagger, StaggerItem } from "./reveal";
+import { ScrambleHeading } from "./scramble-heading";
 import { ExternalLink, BookOpen, FileText } from "lucide-react";
 
 interface RelatedWork {
@@ -85,9 +86,9 @@ export function RelatedWorks() {
             <span className="h-px flex-1 bg-paper/10" />
           </div>
 
-          <h2 className="mt-6 font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold tracking-display text-paper text-glow-gold">
+          <ScrambleHeading className="mt-6 font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold tracking-display text-paper text-glow-gold">
             The case file extends.
-          </h2>
+          </ScrambleHeading>
           <p className="mt-3 max-w-2xl text-paper-mute">
             Essential reading that shaped the research behind Where Evil Dwells.
             Each work illuminates a different angle of the prison-gang crisis.

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./reveal";
+import { ScrambleHeading } from "./scramble-heading";
 import { cn } from "@/lib/utils";
 
 interface TimelineEvent {
@@ -128,11 +129,9 @@ export function Timeline() {
         </Reveal>
 
         <Reveal>
-          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper text-glow-gold">
-            Decades in the making.
-            <br />
-            <span className="text-gold">One relentless escalation.</span>
-          </h2>
+          <ScrambleHeading className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper text-glow-gold" delay={0.05}>
+            Decades in the making. One relentless escalation.
+          </ScrambleHeading>
           <p className="mt-5 max-w-2xl font-body text-lg leading-relaxed text-paper-mute">
             A timeline of the events that shaped California&rsquo;s prison-gang
             crisis &mdash; from the first whispers of organized power to the
@@ -142,12 +141,14 @@ export function Timeline() {
 
         {/* Timeline layout */}
         <div className="relative mt-16">
-          {/* Central line — parallax-driven */}
+          {/* Central line — parallax-driven with glow */}
           <div
             ref={lineRef}
-            className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-transparent via-gold/30 to-transparent sm:left-1/2 sm:-translate-x-px transition-transform duration-300 ease-out"
+            className="absolute left-6 top-0 h-full w-px sm:left-1/2 sm:-translate-x-px transition-transform duration-300 ease-out"
             style={{
               transform: `translateY(${lineOffset}px)`,
+              background: "linear-gradient(to bottom, transparent 0%, rgba(176,141,87,0.4) 15%, rgba(176,141,87,0.4) 85%, transparent 100%)",
+              boxShadow: "0 0 8px 1px rgba(176,141,87,0.08), 0 0 24px 2px rgba(176,141,87,0.04)",
             }}
             aria-hidden
           />

@@ -449,3 +449,98 @@ Priority Recommendations for Next Phase:
 7. LOW: Implement i18n (Spanish) version for broader audience reach
 8. LOW: Add a "Behind the Research" photo gallery section
 9. LOW: Create animated SVG evidence tape connecting the case board to related sections
+
+---
+Task ID: 9
+Agent: Main Agent (Cron Review)
+Task: Phase 9 — Chapter Deep-Dive modal, 404 page, text scramble headings, atmospheric styling upgrades
+
+Work Log:
+- QA: Full agent-browser pass (desktop 1280x900 + mobile 375x812) — 17 sections rendering, zero console errors
+- QA: Verified all section backgrounds remain dark (allDark: true across all 17 sections)
+- QA: Verified Chapter Deep-Dive modal opens with synopsis, 4 key themes, 3 key figures, page range, READ THE EXCERPT CTA
+- QA: Verified chapter cards are now interactive buttons (88 total interactive elements, up from 83)
+- QA: Verified 3 hero glow orbs, 2 atmosphere-fog sections, 1 scanline-medium section rendered
+- QA: Verified ScrambleHeading component renders on 5 sections (KeyPlayers, RelatedWorks, AudioPreview, CaseBoard, Timeline)
+- QA: Verified timeline center line now has gold glow (box-shadow effect)
+- QA: Mobile viewport: 17 sections, zero errors, responsive
+- Rebuilt ChapterPreview component as self-contained deep-dive system:
+  - 6 chapters now have rich deep-dive data (full synopsis, 4 themes each, 3 key figures, page ranges)
+  - Chapter cards changed from <div> to <button> for accessibility
+  - Added chevron-right icon on hover for discoverability
+  - Deep-dive modal: Framer Motion blur-in/out, synopsis section, key themes with evidence-marker bullets, key figures list with PRIMARY SUBJECT badge, classified warning bar, READ THE EXCERPT CTA for sample chapters, PRE-ORDER CTA for classified chapters
+- Created 404 page (not-found.tsx): noir "EVIDENCE MISSING" theme with 404 stamp, case file metadata grid, return to case file CTA, grain-overlay, page-frame, magnetic-btn styling
+- Created ScrambleHeading component: IntersectionObserver-triggered text decode animation
+  - Randomized character replacement (A-Z, 0-9, @#$%&) at 25ms intervals
+  - Supports configurable delay, tag (h1-h4), className
+  - Applied to 5 section headings: KeyPlayers, RelatedWorks, AudioPreview, CaseBoard, Timeline
+- Enhanced Hero: added 3 animated atmospheric glow orbs (rust + gold + gold at different scales)
+  - orb-drift-1: 12s cycle, translates and scales
+  - orb-drift-2: 15s cycle with 2s delay
+  - orb-drift-3: 10s cycle with 4s delay
+- Enhanced Timeline center line: replaced simple gradient with gold glow line using box-shadow (8px + 24px layers)
+- Enhanced Press Kit: added scanline-medium CSS overlay for CRT monitor effect
+- Enhanced Case Board section: added atmosphere-fog CSS (top + bottom gradient fog at edges)
+- Enhanced Audio Preview section: added atmosphere-fog CSS
+- Created 7 new CSS utility classes in globals.css:
+  1. `@keyframes orb-drift-1/2/3` + `.hero-glow-orb-1/2/3` — slow breathing glow orb animations
+  2. `.scanline-light` — subtle repeating scanline overlay
+  3. `.scanline-medium` — more visible scanline overlay (applied to Press Kit)
+  4. `.atmosphere-fog` — gradient fog at section top and bottom edges
+  5. `.border-reveal` — transparent-to-gold border on hover
+  6. `@keyframes dot-pulse-gold` + `.dot-pulse-gold` — gold pulse ring for dots
+  7. `.section-transition-enhanced` — double gold line section divider
+  8. `.noise-text` — noise overlay on hover
+- ESLint clean (only pre-existing error in examples/websocket/frontend.tsx)
+- Removed unused standalone chapter-deep-dive.tsx (functionality inlined into chapter-preview.tsx)
+
+Stage Summary:
+- 1 new interactive feature: Chapter Deep-Dive modal (6 chapters with full metadata)
+- 1 new page: 404 (not-found.tsx) with noir evidence-missing theme
+- 1 new component: ScrambleHeading (scroll-triggered text decode animation)
+- 8 new CSS utility classes for atmospheric effects
+- Hero enhanced with 3 animated glow orbs
+- Timeline enhanced with glowing gold center line
+- Case Board and Audio Preview enhanced with atmosphere-fog edge effects
+- Press Kit enhanced with scanline-medium CRT overlay
+- 5 section headings now use ScrambleHeading for interactive text reveal
+- Chapter cards now clickable buttons with chevron discoverability
+- All QA passed: 17 sections, all dark backgrounds, zero console errors, 88 interactive elements, responsive on mobile
+
+Current Project Status Assessment:
+- The book landing page has 17 content sections + 7 floating utilities (ReadingProgress, BackToTop, NoirToggle, ThemeSwitcher, LoadingScreen, SearchModal, CursorTrail)
+- Complete noir/investigative design system: charcoal/paper/gold/rust palette, grain textures, dossier aesthetic
+- 20 interactive features: Reading Progress Bar, Back to Top, Full-screen Mobile Menu, Animated Stats Counter, FAQ Accordion (keyboard nav), Parallax Hero, Active Nav Tracking, Table of Contents Modal, Film Noir Toggle, Theme Switcher (3 modes), Search Modal (Cmd+K, 16 results), Share Buttons, Quote Carousel, Contact Modal, Interactive Case Board (draggable pins), Audio Preview (TTS playback), Cursor Trail (gold particles), Chapter Deep-Dive Modal, ScrambleHeadings (5 sections)
+- 11 content features: Chapter Preview Cards (now clickable with deep-dive), Timeline, FAQ, Press Kit, Dust Particles, Stats Bar, Key Players, Reader Reviews, Case Board, Audio Preview, Related Works
+- Full SEO: OG tags, Twitter Cards, JSON-LD Book schema, proper title/description/keywords
+- 404 page with noir "EVIDENCE MISSING" theme
+- Loading screen with noir "R" stamp animation
+- 44+ CSS utility classes for atmospheric and decorative effects
+- All sections use consistent dark backgrounds, double-line section transitions, grain overlays
+- Typography hierarchy: Display (Fraunces), Body (Source Serif 4), Mono-dossier (IBM Plex Mono)
+- Custom scrollbar with gold gradient streak, focus-visible gold outlines, prefers-reduced-motion support
+- Newsletter API functional (Prisma + SQLite), Contact API functional (Prisma + SQLite), TTS API functional (z-ai-web-dev-sdk)
+- All QA passed across desktop and mobile viewports
+
+Unresolved Issues / Risks:
+- Endorsement section still uses placeholder "SLOT 1/2 · PENDING" — real reviews needed after publication
+- "As Featured In" marquee lists publications that haven't featured the book yet — update post-publication
+- Press Kit download buttons show visual feedback but don't link to real files (placeholder behavior)
+- Book cover @2x was AI-upscaled from 668px — a true high-res scan from publisher would be ideal
+- JSON-LD ISBN field is empty — add when available from publisher
+- Theme Switcher modifies CSS custom properties globally — ensure no conflicts with future component additions
+- Reader Reviews use placeholder reviews — replace with real reviews after publication
+- Audio Preview TTS uses "jam" voice — consider alternative voice options for different narrator feels
+- CursorTrail uses canvas at z-60 — verify no conflict with modals/dialogs at higher z-index
+- ScrambleHeading processes on every scroll intersection — ensure no performance impact with many instances
+
+Priority Recommendations for Next Phase:
+1. HIGH: Connect Press Kit download buttons to real hosted files (book cover, headshot, press release PDF)
+2. HIGH: Add JSON-LD ISBN when available from publisher
+3. MEDIUM: Add a "Behind the Research" photo gallery section with lightbox
+4. MEDIUM: Implement scroll-triggered text scramble on remaining section headings (Hero, BookShowcase, Excerpt, Author, Endorsements, FAQ, Buy, Events, Newsletter)
+5. MEDIUM: Add parallax depth to the book cover shadow in the hero section
+6. MEDIUM: Create an "Author Q&A" section with expandable questions
+7. LOW: Implement i18n (Spanish) version for broader audience reach
+8. LOW: Add dark/light mode toggle (currently dark-only)
+9. LOW: Create animated SVG evidence tape connecting the case board to related sections

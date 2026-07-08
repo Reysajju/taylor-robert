@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal, Stagger, StaggerItem } from "./reveal";
+import { ScrambleHeading } from "./scramble-heading";
 
 interface Gang {
   name: string;
@@ -62,9 +63,9 @@ export function KeyPlayers() {
 
         {/* Heading */}
         <Reveal direction="up" delay={0.1}>
-          <h2 className="mt-6 font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold tracking-display text-paper text-glow-gold">
+          <ScrambleHeading className="mt-6 font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold tracking-display text-paper text-glow-gold">
             The organizations inside.
-          </h2>
+          </ScrambleHeading>
         </Reveal>
 
         {/* Subtitle */}

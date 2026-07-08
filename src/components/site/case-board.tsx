@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Reveal } from "./reveal";
+import { ScrambleHeading } from "./scramble-heading";
 import { X, GripVertical, Redo } from "lucide-react";
 
 /* ─── Data ─────────────────────────────────────────────── */
@@ -135,7 +136,7 @@ export function CaseBoard() {
   return (
     <section
       id="case-board"
-      className="grain-overlay concrete-texture section-transition relative overflow-hidden border-t border-paper/10 bg-charcoal-deep"
+      className="grain-overlay concrete-texture section-transition atmosphere-fog relative overflow-hidden border-t border-paper/10 bg-charcoal-deep"
     >
       <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:px-12">
         {/* Section header */}
@@ -155,9 +156,9 @@ export function CaseBoard() {
             </button>
           </div>
 
-          <h2 className="mt-6 font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold tracking-display text-paper text-glow-gold">
+          <ScrambleHeading className="mt-6 font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold tracking-display text-paper text-glow-gold">
             Connect the dots.
-          </h2>
+          </ScrambleHeading>
           <p className="mt-3 max-w-2xl text-paper-mute">
             An interactive investigation map. Drag the evidence pins to rearrange.
             Hover over the red thread to see how the connections unfold.

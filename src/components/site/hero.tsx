@@ -75,6 +75,13 @@ export function Hero() {
       {/* Floating dust particles */}
       <DustParticles />
 
+      {/* Animated atmospheric glow orbs */}
+      <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden>
+        <div className="hero-glow-orb hero-glow-orb-1 absolute -left-20 top-1/4 h-[500px] w-[500px] rounded-full bg-rust/[0.03] blur-[120px]" />
+        <div className="hero-glow-orb hero-glow-orb-2 absolute -right-32 top-1/3 h-[400px] w-[400px] rounded-full bg-gold/[0.025] blur-[100px]" />
+        <div className="hero-glow-orb hero-glow-orb-3 absolute bottom-0 left-1/3 h-[350px] w-[350px] rounded-full bg-gold/[0.015] blur-[80px]" />
+      </div>
+
       {/* TOP SECRET diagonal stamp — faint watermark */}
       <div
         className="pointer-events-none absolute right-4 top-1/3 z-[3] sm:right-12 sm:top-1/4"
