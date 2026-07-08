@@ -26,6 +26,8 @@ import { CaseBoard } from "@/components/site/case-board";
 import { AudioPreview } from "@/components/site/audio-preview";
 import { RelatedWorks } from "@/components/site/related-works";
 import { CursorTrail } from "@/components/site/micro-interactions";
+import { AuthorQA } from "@/components/site/author-qa";
+import { ResearchGallery } from "@/components/site/research-gallery";
 
 export default function Home() {
   return (
@@ -44,12 +46,14 @@ export default function Home() {
         <CaseBoard />
         <KeyPlayers />
         <AboutAuthor />
+        <AuthorQA />
         <Endorsements />
         <ReaderReviews />
         <AudioPreview />
         <FAQ />
         <PressKit />
         <BuySection />
+        <ResearchGallery />
         <RelatedWorks />
         <EventsSection />
         <Newsletter />

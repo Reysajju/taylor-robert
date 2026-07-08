@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTransition } from "react";
 import { ArrowRight, Check, Loader2, Mail } from "lucide-react";
 import { Reveal } from "./reveal";
+import { ScrambleHeading } from "./scramble-heading";
 
 export function Newsletter() {
   const [email, setEmail] = useState("");
@@ -70,9 +71,9 @@ export function Newsletter() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <h2 className="mt-7 font-display text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.05] tracking-display text-paper text-glow-gold">
+          <ScrambleHeading className="mt-7 font-display text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.05] tracking-display text-paper text-glow-gold">
             Get word when the next file opens.
-          </h2>
+          </ScrambleHeading>
         </Reveal>
 
         <Reveal delay={0.14}>

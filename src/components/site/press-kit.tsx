@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Reveal } from "./reveal";
+import { ScrambleHeading } from "./scramble-heading";
 import { ContactTrigger } from "./contact-modal";
 import {
   Download,
@@ -113,10 +114,9 @@ export function PressKit() {
         </Reveal>
 
         <Reveal>
-          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper text-glow-gold">
-            Press kit
-            <span className="text-gold">.</span>
-          </h2>
+          <ScrambleHeading className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper text-glow-gold">
+            Press kit<span className="text-gold">.</span>
+          </ScrambleHeading>
           <p className="mt-5 max-w-xl font-body text-lg leading-relaxed text-paper-mute">
             Everything you need for press coverage, reviews, or event listings.
             All assets are available for editorial use.

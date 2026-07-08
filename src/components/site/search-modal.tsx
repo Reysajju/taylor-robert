@@ -95,6 +95,16 @@ const SECTIONS = [
     desc: "Essential reading and research bibliography",
     href: "#related-works",
   },
+  {
+    label: "Author Q&A",
+    desc: "Interview questions and answers with Robert B. Taylor",
+    href: "#author-qa",
+  },
+  {
+    label: "Research Gallery",
+    desc: "Behind-the-scenes photographs and investigation artifacts",
+    href: "#research",
+  },
 ] as const
 
 /* ------------------------------------------------------------------ */

@@ -26,6 +26,8 @@ const SECTION_MAP: Record<
   "#press": { desktop: "PRESS", mobile: "PRESS" },
   "#buy": { desktop: "§ 05 ACQUIRE", mobile: "§ 05" },
   "#related-works": { desktop: "FURTHER READING", mobile: "READING" },
+  "#author-qa": { desktop: "AUTHOR Q&A", mobile: "Q&A" },
+  "#research": { desktop: "RESEARCH GALLERY", mobile: "GALLERY" },
   "#newsletter": { desktop: "CASE FILE", mobile: "CASE FILE" },
 };
 

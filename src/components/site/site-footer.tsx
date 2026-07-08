@@ -3,8 +3,6 @@
 import { Reveal } from "./reveal";
 import { ContactTrigger } from "./contact-modal";
 import { GOODREADS_URL } from "@/lib/retailers";
-import { ShareButtons } from "./share-buttons";
-
 const SOCIALS = [
   { label: "Goodreads", href: GOODREADS_URL },
   { label: "Amazon", href: "https://www.amazon.com/WHERE-EVIL-DWELLS-PERDITION-AWAITS/dp/B0H2KK7RJQ" },
@@ -17,8 +15,10 @@ const NAV = [
   { label: "Case Board", href: "#case-board" },
   { label: "Subjects", href: "#subjects" },
   { label: "Author", href: "#author" },
+  { label: "Author Q&A", href: "#author-qa" },
   { label: "Reviews", href: "#reviews" },
   { label: "Audio Preview", href: "#audio-preview" },
+  { label: "Research", href: "#research" },
   { label: "Timeline", href: "#timeline" },
   { label: "FAQ", href: "#faq" },
   { label: "Buy", href: "#buy" },
@@ -121,13 +121,6 @@ export function SiteFooter() {
                 <li>Paperback &middot; 289 pages</li>
                 <li>First Edition &middot; 2026</li>
               </ul>
-            </div>
-
-            <div>
-              <p className="font-mono-dossier mb-4 text-[0.55rem] tracking-label text-paper-mute/50">
-                SHARE THIS FILE
-              </p>
-              <ShareButtons />
             </div>
 
             <div>

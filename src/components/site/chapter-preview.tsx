@@ -186,7 +186,7 @@ export function ChapterPreview() {
               <button
                 type="button"
                 onClick={() => openDeepDive(ch.num)}
-                className={`group relative w-full bg-charcoal-deep p-6 text-left transition-all duration-500 hover-lift sm:p-8 ${
+                className={`group relative w-full bg-charcoal-deep p-6 text-left transition-all duration-500 hover-lift border-reveal sm:p-8 ${
                   ch.status === "sample"
                     ? "hover:bg-charcoal-raised cursor-pointer"
                     : "cursor-pointer"

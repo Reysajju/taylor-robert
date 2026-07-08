@@ -108,7 +108,7 @@ export function ReaderReviews() {
           {REVIEWS.map((review, i) => (
             <StaggerItem key={i} direction="up">
               <article
-                className={`relative border-l-2 border-l-gold/30 bg-charcoal/40 p-5 transition-all duration-500 hover:bg-charcoal/60 sm:p-6 hover-lift ${
+                className={`relative border-l-2 border-l-gold/30 bg-charcoal/40 p-5 transition-all duration-500 hover:bg-charcoal/60 sm:p-6 hover-lift border-reveal ${
                   i % 2 === 0 ? "sm:mr-6" : "sm:ml-6"
                 }`}
               >

@@ -537,10 +537,10 @@ Unresolved Issues / Risks:
 Priority Recommendations for Next Phase:
 1. HIGH: Connect Press Kit download buttons to real hosted files (book cover, headshot, press release PDF)
 2. HIGH: Add JSON-LD ISBN when available from publisher
-3. MEDIUM: Add a "Behind the Research" photo gallery section with lightbox
-4. MEDIUM: Implement scroll-triggered text scramble on remaining section headings (Hero, BookShowcase, Excerpt, Author, Endorsements, FAQ, Buy, Events, Newsletter)
+3. MEDIUM: Replace AI-generated research gallery images with actual documentary photographs when available
+4. MEDIUM: Add a "Chapter Deep-Dive" for chapters 07-12 with partial data
 5. MEDIUM: Add parallax depth to the book cover shadow in the hero section
-6. MEDIUM: Create an "Author Q&A" section with expandable questions
+6. MEDIUM: Create an animated SVG evidence tape connecting the case board to related sections
 7. LOW: Implement i18n (Spanish) version for broader audience reach
 8. LOW: Add dark/light mode toggle (currently dark-only)
-9. LOW: Create animated SVG evidence tape connecting the case board to related sections
+9. LOW: Add a "Reading List" widget — save book to local storage with a floating CTA
