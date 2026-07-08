@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SearchModal } from "./search-modal";
 
 const LINKS = [
   { href: "#book", label: "The Book" },
@@ -78,7 +79,9 @@ export function SiteNav() {
           </span>
         </a>
 
-        <div className="hidden items-center gap-9 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
+          <SearchModal />
+          <div className="h-4 w-px bg-paper/10" />
           {LINKS.map((l) => (
             <a
               key={l.href}

@@ -87,7 +87,7 @@ export function ChapterPreview() {
           {CHAPTERS.map((ch, i) => (
             <Reveal key={ch.num} delay={i * 0.06}>
               <div
-                className={`group relative bg-charcoal-deep p-6 transition-all duration-500 sm:p-8 ${
+                className={`group relative bg-charcoal-deep p-6 transition-all duration-500 hover-lift sm:p-8 ${
                   ch.status === "sample"
                     ? "hover:bg-charcoal-raised cursor-pointer"
                     : "cursor-default"

@@ -75,6 +75,19 @@ export function Hero() {
       {/* Floating dust particles */}
       <DustParticles />
 
+      {/* TOP SECRET diagonal stamp — faint watermark */}
+      <div
+        className="pointer-events-none absolute right-4 top-1/3 z-[3] sm:right-12 sm:top-1/4"
+        aria-hidden
+      >
+        <span
+          className="block font-mono-dossier text-[12vw] font-bold leading-none tracking-[0.25em] text-paper/[0.018] sm:text-[8vw]"
+          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+        >
+          TOP SECRET
+        </span>
+      </div>
+
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-5 pb-20 pt-32 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:px-12 lg:pb-24 lg:pt-28">
         {/* Left: text */}
         <motion.div
@@ -195,7 +208,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll cue */}
+      {/* Scroll cue with bounce */}
       <motion.div
         className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 sm:flex"
         initial={{ opacity: 0 }}
@@ -205,7 +218,11 @@ export function Hero() {
         <span className="font-mono-dossier text-[0.55rem] tracking-label text-paper-mute/60">
           SCROLL TO ENTER THE FILE
         </span>
-        <span className="h-10 w-px bg-gradient-to-b from-gold/60 to-transparent" />
+        <motion.span
+          className="block h-10 w-px bg-gradient-to-b from-gold/60 to-transparent"
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        />
       </motion.div>
     </section>
   );

@@ -73,7 +73,7 @@ export function Timeline() {
   return (
     <section
       id="timeline"
-      className="concrete-texture section-transition relative overflow-hidden border-t border-paper/10 bg-charcoal py-24 sm:py-32"
+      className="concrete-texture section-transition smoke-transition relative overflow-hidden border-t border-paper/10 bg-charcoal py-24 sm:py-32"
     >
       {/* Faint vertical line watermark */}
       <div

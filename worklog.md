@@ -177,3 +177,77 @@ Priority Recommendations for Next Phase:
 6. LOW: Create a dedicated 404 page with noir styling
 7. LOW: Add a loading/splash screen animation before the hero appears
 8. LOW: Implement i18n (Spanish) version for broader audience reach
+
+---
+Task ID: 6
+Agent: Main Agent (Cron Review)
+Task: Phase 6 — Loading screen, search modal, theme switcher, quote carousel, atmospheric styling
+
+Work Log:
+- QA: Full agent-browser pass (desktop 1280x800 + mobile 375x812) — 12 sections rendering, zero console errors
+- QA: Verified all Phase 5 features intact: stats animated, ToC modal, noir toggle, typewriter, corner brackets, scan line, evidence stamps, text glow
+- QA: Tested loading screen (visible on page load, fades out after ~2s), search modal (Cmd+K opens, 11 results, ESC closes, gold text highlighting), theme switcher (3 themes, localStorage persistence), quote carousel (4 quotes, 8s auto-advance, hover pauses, navigation dots)
+- QA: Tested theme switching: Crime Scene changes gold to #a34028 (red), resets cleanly to gold #b08d57
+- QA: Verified all section backgrounds remain dark (allDark: true)
+- Created LoadingScreen component: full-screen z-[100] preloader with gold-bordered "R" stamp, "WHERE EVIL DWELLS" subtitle, "CLASSIFIED DOSSIER — LOADING..." blinking cursor, gold rule-gold line sweep animation, Framer Motion AnimatePresence exit at ~2s
+- Created SearchModal component: Cmd+K / Ctrl+K keyboard shortcut, shadcn/ui Dialog with noir styling, 11 searchable sections with case-insensitive filter on label+desc, gold-highlighted matching text, ArrowRight icons, hover:bg-charcoal-raised, "NO RESULTS" empty state, result count + "ESC to close" footer, auto-focus input, query resets on dialog close
+- Created ThemeSwitcher component: floating Palette icon button (z-39) below noir toggle, opens square-edged popover with 3 noir color temperature modes — "Case File" (default gold/rust), "Interrogation" (steel-blue #6b8fa3), "Crime Scene" (blood-red #a34028), applies CSS custom properties on documentElement, persists to localStorage, auto-restores on mount, closes on outside click
+- Created QuoteCarousel component: 4 rotating quotes (Kolbe, Taylor, Dostoevsky, MLK Jr.) with 8s auto-advance, Framer Motion crossfade (opacity + y), large 8rem decorative opening quotation mark, rule-gold divider, dossier-style author attribution, navigation dots, auto-advance pauses on hover
+- Enhanced Hero: added "TOP SECRET" vertical watermark text (writing-mode: vertical-rl, 12vw mobile / 8vw desktop, 1.8% opacity, rotate(180deg)), scroll cue now has bouncing animation (motion.y: [0, 6, 0] with 1.8s infinite ease-in-out)
+- Enhanced Excerpt: added smoke-transition CSS (animated fog gradient at section bottom), file-tab CSS decoration (dossier file tab label above section)
+- Enhanced Timeline: added smoke-transition CSS for atmospheric depth between sections
+- Enhanced Chapter Cards: added hover-lift CSS (translateY(-2px) + elevated box-shadow on hover)
+- Enhanced Endorsements: added hover-lift to pull-quote panel, replaced static Kolbe epigraph with rotating QuoteCarousel (4 quotes cycling every 8s)
+- Enhanced Nav: integrated SearchModal trigger with gold divider separator in desktop nav
+- Added page-frame CSS: cinematic edge vignette (subtle dark gradient from all 4 edges, fixed positioning, z-45)
+- Added smoke-transition CSS: animated fog gradient drifting at section bottoms
+- Added hover-lift CSS: universal card lift micro-interaction
+- Added text-shimmer CSS: animated gold gradient text fill effect
+- Added stamp-animate CSS: rotating stamp entrance animation
+- Added rule-gold-pulse CSS: animated gold line with opacity breathing
+- Added file-tab CSS: dossier "FILE" tab decoration at section tops
+- Enhanced scrollbar: gold gradient streak on thumb
+- ESLint clean except pre-existing examples/websocket error
+- Removed unused ref in search-modal.tsx (setState-in-effect fix)
+
+Stage Summary:
+- 4 new major features: Loading Screen, Search Modal (Cmd+K), Theme Switcher (3 modes), Quote Carousel (4 rotating quotes)
+- 8 new CSS utility classes: smoke-transition, hover-lift, text-shimmer, stamp-animate, page-frame, file-tab, rule-gold-pulse, enhanced scrollbar
+- Hero now has "TOP SECRET" vertical watermark and bouncing scroll indicator
+- Excerpt section has dossier file-tab decoration and smoke transition
+- Timeline section has atmospheric smoke transition
+- Chapter cards have hover lift micro-interaction
+- Endorsements now rotates through 4 quotes instead of static single quote
+- All QA passed: 12 sections, all dark backgrounds, all interactive elements working, ESLint clean
+
+Current Project Status Assessment:
+- The book landing page has 12 content sections + 6 floating utilities (ReadingProgress, BackToTop, NoirToggle, ThemeSwitcher, LoadingScreen, SearchModal)
+- Complete noir/investigative design system: charcoal/paper/gold/rust palette, grain textures, dossier aesthetic
+- 14 interactive features: Reading Progress Bar, Back to Top, Full-screen Mobile Menu, Animated Stats Counter, FAQ Accordion (keyboard nav), Parallax Hero, Active Nav Tracking, Table of Contents Modal, Film Noir Toggle, Theme Switcher (3 modes), Search Modal (Cmd+K), Share Buttons, Quote Carousel
+- 6 content features: Chapter Preview Cards, Timeline, FAQ, Press Kit, Dust Particles, Stats Bar
+- Full SEO: OG tags, Twitter Cards, JSON-LD Book schema, proper title/description/keywords
+- Loading screen with noir "R" stamp animation
+- Cinematic page-frame edge vignette, smoke transitions, hover-lift micro-interactions
+- All sections use consistent dark backgrounds, double-line section transitions, grain overlays
+- Typography hierarchy: Display (Fraunces), Body (Source Serif 4), Mono-dossier (IBM Plex Mono)
+- Custom scrollbar with gold gradient streak, focus-visible gold outlines, prefers-reduced-motion support
+- Newsletter API functional (Prisma + SQLite)
+- All QA passed across desktop and mobile viewports
+
+Unresolved Issues / Risks:
+- Endorsement section still uses placeholder "SLOT 1/2 · PENDING" — real reviews needed after publication
+- "As Featured In" marquee lists publications that haven't featured the book yet — update post-publication
+- Press Kit download buttons show visual feedback but don't link to real files (placeholder behavior)
+- Book cover @2x was AI-upscaled from 668px — a true high-res scan from publisher would be ideal
+- JSON-LD ISBN field is empty — add when available from publisher
+- Theme Switcher modifies CSS custom properties globally — ensure no conflicts with future component additions
+
+Priority Recommendations for Next Phase:
+1. HIGH: Connect Press Kit download buttons to real hosted files (book cover, headshot, press release PDF)
+2. HIGH: Add JSON-LD ISBN when available from publisher
+3. MEDIUM: Add a "Reader Reviews" section with star ratings once real reviews are available post-publication
+4. MEDIUM: Add an "Events" section or modal for upcoming book readings/signings
+5. MEDIUM: Add subtle parallax to the timeline center line on scroll
+6. LOW: Create a dedicated 404 page with noir styling
+7. LOW: Add a "Contact" modal with a more detailed inquiry form (name, email, subject, message)
+8. LOW: Implement i18n (Spanish) version for broader audience reach
