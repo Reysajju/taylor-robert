@@ -52,7 +52,7 @@ function AssetCard({
   downloading: boolean;
 }) {
   return (
-    <div className="group relative border border-paper/10 bg-charcoal-soft/50 p-6 transition-all duration-500 hover:border-gold/30 hover:bg-charcoal-soft sm:p-7">
+    <div className="group relative border border-paper/10 bg-charcoal-soft/50 p-6 corner-brackets transition-all duration-500 hover:border-gold/30 hover:bg-charcoal-soft sm:p-7 overflow-hidden">
       {/* Corner accent on hover */}
       <div className="absolute right-0 top-0 h-8 w-8 border-r-2 border-t-2 border-gold/0 transition-all duration-500 group-hover:border-gold/40" aria-hidden />
 
@@ -101,7 +101,7 @@ export function PressKit() {
   return (
     <section
       id="press"
-      className="concrete-texture section-transition relative overflow-hidden border-t border-paper/10 bg-charcoal-soft py-24 sm:py-32"
+      className="concrete-texture section-transition scan-line relative overflow-hidden border-t border-paper/10 bg-charcoal-soft py-24 sm:py-32"
     >
       <div className="relative z-10 mx-auto max-w-4xl px-5 sm:px-8 lg:px-12">
         <Reveal className="mb-6 flex items-center gap-4">
@@ -112,7 +112,7 @@ export function PressKit() {
         </Reveal>
 
         <Reveal>
-          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper">
+          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper text-glow-gold">
             Press kit
             <span className="text-gold">.</span>
           </h2>

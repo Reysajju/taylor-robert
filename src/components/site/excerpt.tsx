@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Lock, ArrowRight } from "lucide-react";
+import { Lock, ArrowRight, Clock } from "lucide-react";
 import { Reveal } from "./reveal";
 
 /**
@@ -63,6 +63,12 @@ export function Excerpt() {
               <span className="typewriter-cursor" />
             </span>
             <span className="h-px flex-1 bg-paper/15" />
+            {/* Reading time indicator */}
+            <span className="flex items-center gap-1.5 font-mono-dossier text-[0.5rem] tracking-label text-paper-mute/40">
+              <Clock className="h-3 w-3" />
+              EST. READING TIME: 2 MIN
+            </span>
+            <span className="h-3 w-px bg-paper/15" />
             {/* Declassify stamp that reveals */}
             <div className="relative">
               <span className="font-mono-dossier inline-flex items-center gap-1.5 border border-paper/15 px-2.5 py-1 text-[0.5rem] tracking-label text-paper/50">

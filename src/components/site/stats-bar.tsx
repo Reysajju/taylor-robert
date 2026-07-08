@@ -14,7 +14,7 @@ interface StatProps {
 }
 
 function AnimatedStat({ icon, value, suffix = "", label, sublabel, delay = 0 }: StatProps) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number | null>(null);
   const ref = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
 
@@ -26,6 +26,8 @@ function AnimatedStat({ icon, value, suffix = "", label, sublabel, delay = 0 }: 
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
+          // Show initial value immediately, then animate
+          setCount(0);
           // Animate from 0 to value over 1.5s
           const duration = 1500;
           const start = performance.now();
@@ -50,7 +52,7 @@ function AnimatedStat({ icon, value, suffix = "", label, sublabel, delay = 0 }: 
 
   return (
     <span ref={ref} className="tabular-nums">
-      {count}
+      {count === null ? "\u2014" : count}
       {suffix}
     </span>
   );

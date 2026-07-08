@@ -38,7 +38,7 @@ export function BookShowcase() {
           {/* Synopsis */}
           <div className="lg:col-span-7">
             <Reveal>
-              <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper">
+              <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper text-glow-gold">
                 A reckoning with
                 <br />
                 <span className="text-gold">the evil inside the walls.</span>
@@ -67,7 +67,7 @@ export function BookShowcase() {
 
             {/* Quick spec sheet */}
             <Reveal delay={0.16}>
-              <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden border border-paper/10 bg-paper/10 sm:grid-cols-4">
+              <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden border border-paper/10 bg-paper/10 sm:grid-cols-4 corner-brackets">
                 {[
                   ["Publisher", "Wadsworth"],
                   ["Genre", "True Crime"],

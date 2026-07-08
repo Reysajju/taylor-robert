@@ -27,7 +27,7 @@ export function BuySection() {
               <p className="font-mono-dossier mb-4 text-[0.6rem] tracking-label text-rust-bright/90">
                 THE BOOK IS AVAILABLE NOW
               </p>
-              <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.02] tracking-display text-paper">
+              <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.02] tracking-display text-paper text-glow-gold">
                 Take the file
                 <br />
                 <span className="text-gold">off the shelf.</span>

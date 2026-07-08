@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Reveal } from "./reveal";
@@ -60,31 +60,46 @@ const FAQS: FAQItem[] = [
 function FAQAccordionItem({
   item,
   isOpen,
+  isFocused,
   onToggle,
+  onFocus,
   index,
 }: {
   item: FAQItem;
   isOpen: boolean;
+  isFocused?: boolean;
   onToggle: () => void;
+  onFocus: () => void;
   index: number;
 }) {
   return (
-    <div className="border-b border-paper/10 last:border-b-0">
+    <div className={cn(
+      "border-b border-paper/10 last:border-b-0 transition-colors duration-300",
+      isFocused && "bg-gold/[0.03]"
+    )}>
       <button
         onClick={onToggle}
+        onFocus={onFocus}
         aria-expanded={isOpen}
         className="group flex w-full items-start gap-4 py-5 text-left transition-colors hover:text-gold sm:py-6"
       >
-        <span className="font-mono-dossier mt-1 text-[0.5rem] tracking-label text-paper-mute/40 group-hover:text-gold/60 transition-colors shrink-0 w-6">
+        <span className={cn(
+          "font-mono-dossier mt-1 text-[0.5rem] tracking-label transition-colors shrink-0 w-6",
+          isFocused ? "text-gold" : "text-paper-mute/40 group-hover:text-gold/60"
+        )}>
           {String(index + 1).padStart(2, "0")}
         </span>
-        <span className="flex-1 font-display text-base font-semibold leading-snug tracking-display text-paper group-hover:text-gold transition-colors duration-300 sm:text-lg">
+        <span className={cn(
+          "flex-1 font-display text-base font-semibold leading-snug tracking-display transition-colors duration-300 sm:text-lg",
+          isFocused ? "text-gold" : "text-paper group-hover:text-gold"
+        )}>
           {item.question}
         </span>
         <ChevronDown
           className={cn(
-            "mt-1 h-4 w-4 shrink-0 text-paper-mute/40 transition-all duration-300 group-hover:text-gold",
-            isOpen && "rotate-180 text-gold",
+            "mt-1 h-4 w-4 shrink-0 transition-all duration-300",
+            isOpen || isFocused ? "text-gold" : "text-paper-mute/40 group-hover:text-gold",
+            isOpen && "rotate-180",
           )}
         />
       </button>
@@ -117,10 +132,82 @@ function FAQAccordionItem({
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const toggleItem = useCallback((i: number) => {
+    setOpenIndex((prev) => (prev === i ? null : i));
+  }, []);
+
+  // Keyboard navigation for FAQ items
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(section);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const buttons = section.querySelectorAll<HTMLButtonElement>(
+        'button[aria-expanded]'
+      );
+      if (!buttons.length) return;
+
+      // Only handle if one of the FAQ buttons is focused or section is visible
+      const activeEl = document.activeElement;
+      const isFaqButton = activeEl && buttons.includes(activeEl as HTMLButtonElement);
+      if (!isFaqButton) return;
+
+      const currentIndex = Array.from(buttons).indexOf(activeEl as HTMLButtonElement);
+
+      switch (e.key) {
+        case "ArrowDown":
+        case "ArrowRight": {
+          e.preventDefault();
+          const next = (currentIndex + 1) % buttons.length;
+          buttons[next].focus();
+          setFocusedIndex(next);
+          break;
+        }
+        case "ArrowUp":
+        case "ArrowLeft": {
+          e.preventDefault();
+          const prev = (currentIndex - 1 + buttons.length) % buttons.length;
+          buttons[prev].focus();
+          setFocusedIndex(prev);
+          break;
+        }
+        case "Home": {
+          e.preventDefault();
+          buttons[0].focus();
+          setFocusedIndex(0);
+          break;
+        }
+        case "End": {
+          e.preventDefault();
+          buttons[buttons.length - 1].focus();
+          setFocusedIndex(buttons.length - 1);
+          break;
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <section
       id="faq"
+      ref={sectionRef}
       className="grain-overlay concrete-texture relative overflow-hidden border-t border-paper/10 bg-charcoal-soft py-24 sm:py-32"
     >
       <div className="relative z-10 mx-auto max-w-3xl px-5 sm:px-8">
@@ -151,7 +238,9 @@ export function FAQ() {
                 item={item}
                 index={i}
                 isOpen={openIndex === i}
-                onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+                isFocused={focusedIndex === i}
+                onToggle={() => toggleItem(i)}
+                onFocus={() => setFocusedIndex(i)}
               />
             ))}
           </div>

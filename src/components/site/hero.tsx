@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { BookCover } from "./book-cover";
@@ -105,7 +106,7 @@ export function Hero() {
             variants={item}
             className="mt-4 font-display text-[clamp(1.1rem,2.2vw,1.7rem)] font-medium italic tracking-[0.12em] text-gold"
           >
-            Perdition Awaits
+            <TypewriterText text="Perdition Awaits" />
           </motion.p>
 
           <motion.p
@@ -207,5 +208,35 @@ export function Hero() {
         <span className="h-10 w-px bg-gradient-to-b from-gold/60 to-transparent" />
       </motion.div>
     </section>
+  );
+}
+
+/** Typewriter effect that types out text character by character */
+function TypewriterText({ text, delay = 0.8 }: { text: string; delay?: number }) {
+  const [displayed, setDisplayed] = useState("");
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setStarted(true), delay * 1000);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started) return;
+    if (displayed.length >= text.length) return;
+
+    const timeout = setTimeout(() => {
+      setDisplayed(text.slice(0, displayed.length + 1));
+    }, 65);
+    return () => clearTimeout(timeout);
+  }, [displayed, started, text]);
+
+  return (
+    <>
+      {displayed}
+      {displayed.length < text.length && (
+        <span className="inline-block w-[0.08em] h-[1em] bg-gold/80 ml-0.5 align-middle animate-pulse" />
+      )}
+    </>
   );
 }

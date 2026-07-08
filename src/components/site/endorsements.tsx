@@ -95,7 +95,7 @@ export function Endorsements() {
               {[0, 1].map((i) => (
                 <div
                   key={i}
-                  className="group flex min-h-[8.5rem] flex-col items-center justify-center border border-dashed border-paper/15 bg-charcoal/40 p-7 text-center transition-all duration-500 hover:border-gold/30 hover:bg-charcoal/60"
+                  className="group flex min-h-[8.5rem] flex-col items-center justify-center border border-dashed border-paper/15 bg-charcoal/40 p-7 text-center transition-all duration-500 hover:border-gold/30 hover:bg-charcoal/60 dashed-border-animate"
                 >
                   <Plus className="h-5 w-5 text-paper-mute/40 transition-colors duration-300 group-hover:text-gold/70" />
                   <p className="mt-3 font-body text-sm italic text-paper-mute/50">

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { Reveal } from "./reveal";
+import { TableOfContents } from "./table-of-contents";
 import { BookOpen, Lock } from "lucide-react";
 
 const CHAPTERS = [
@@ -69,7 +70,7 @@ export function ChapterPreview() {
         </Reveal>
 
         <Reveal>
-          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper">
+          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper text-glow-gold">
             12 chapters.
             <br />
             <span className="text-gold">One open case file.</span>
@@ -143,10 +144,12 @@ export function ChapterPreview() {
 
         {/* Bottom CTA */}
         <Reveal delay={0.3}>
-          <div className="mt-10 text-center">
+          <div className="mt-10 flex flex-col items-center gap-5 sm:flex-row sm:justify-center">
             <p className="font-mono-dossier text-[0.55rem] tracking-label text-paper-mute/40">
               + 6 MORE CHAPTERS &middot; EPILOGUE &middot; APPENDICES
             </p>
+            <span className="hidden h-3 w-px bg-paper/10 sm:block" />
+            <TableOfContents />
           </div>
         </Reveal>
       </div>

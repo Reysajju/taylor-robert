@@ -492,6 +492,97 @@ img {
   background: #080807;
 }
 
+html.noir-filter-active main,
+html.noir-filter-active header,
+html.noir-filter-active footer {
+  filter: sepia(15%) contrast(115%) brightness(90%) saturate(80%);
+  transition: filter 0.6s ease;
+}
+
+/* Corner bracket decorations — dossier frame feel */
+.corner-brackets {
+  position: relative;
+}
+.corner-brackets::before,
+.corner-brackets::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  z-index: 2;
+}
+.corner-brackets::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid rgba(176, 141, 87, 0.25);
+  border-left: 1px solid rgba(176, 141, 87, 0.25);
+}
+.corner-brackets::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid rgba(176, 141, 87, 0.25);
+  border-right: 1px solid rgba(176, 141, 87, 0.25);
+}
+
+/* Scanning line effect for press kit / tech sections */
+@keyframes scan-line {
+  0% { top: -2px; }
+  100% { top: 100%; }
+}
+.scan-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(176, 141, 87, 0.15), transparent);
+  animation: scan-line 4s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Evidence number stamp — small rotated label */
+.evidence-stamp {
+  font-family: var(--font-mono), "Courier New", monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(176, 141, 87, 0.2);
+  transform: rotate(-3deg);
+}
+
+/* Gold text shadow glow for headings */
+.text-glow-gold {
+  text-shadow: 0 0 30px rgba(176, 141, 87, 0.08), 0 0 60px rgba(176, 141, 87, 0.04);
+}
+
+/* Animated dashed border for pending slots */
+.dashed-border-animate {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(237, 232, 221, 0.15),
+    rgba(237, 232, 221, 0.15) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  background-size: 1px 100%;
+  background-repeat: no-repeat;
+  background-position: left, right;
+}
+
+/* Section heading decorative dot */
+.section-dot::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: #b08d57;
+  margin-right: 12px;
+  vertical-align: middle;
+  box-shadow: 0 0 8px rgba(176, 141, 87, 0.3);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

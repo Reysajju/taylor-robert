@@ -90,7 +90,7 @@ export function Timeline() {
         </Reveal>
 
         <Reveal>
-          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper">
+          <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.04] tracking-display text-paper text-glow-gold">
             Decades in the making.
             <br />
             <span className="text-gold">One relentless escalation.</span>

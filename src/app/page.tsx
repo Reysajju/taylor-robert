@@ -14,6 +14,7 @@ import { PressKit } from "@/components/site/press-kit";
 import { BuySection } from "@/components/site/buy-section";
 import { Newsletter } from "@/components/site/newsletter";
 import { SiteFooter } from "@/components/site/site-footer";
+import { NoirToggle } from "@/components/site/noir-toggle";
 
 export default function Home() {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
       </main>
       <SiteFooter />
       <BackToTop />
+      <NoirToggle />
     </div>
   );
 }

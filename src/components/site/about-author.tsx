@@ -29,7 +29,7 @@ export function AboutAuthor() {
               <div className="relative border border-paper/15 p-3">
                 <div className="relative aspect-[4/5] overflow-hidden bg-charcoal-deep">
                   <Image
-                    src="/assets/author-photo.jpg"
+                    src="/assets/author-photo@2x.jpg"
                     alt="Robert B. Taylor — author of Where Evil Dwells"
                     fill
                     sizes="(max-width: 640px) 85vw, (max-width: 1024px) 24rem, 20rem"
@@ -68,7 +68,7 @@ export function AboutAuthor() {
               <p className="font-mono-dossier mb-5 text-[0.6rem] tracking-label text-rust-bright/90">
                 ABOUT THE AUTHOR
               </p>
-              <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.02] tracking-display text-paper">
+              <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.02] tracking-display text-paper text-glow-gold">
                 A career spent where
                 <br />
                 the system meets the street.

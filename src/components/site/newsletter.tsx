@@ -53,6 +53,14 @@ export function Newsletter() {
         STAY INFORMED
       </span>
 
+      {/* Decorative corner brackets */}
+      <span className="evidence-stamp absolute left-6 top-6 sm:left-10 sm:top-10" aria-hidden>
+        FILE REF: NEWS-2026-001
+      </span>
+      <span className="evidence-stamp absolute right-6 top-6 sm:right-10 sm:top-10" aria-hidden style={{ transform: "rotate(2deg)" }}>
+        PRIORITY: ROUTINE
+      </span>
+
       <div className="relative z-10 mx-auto max-w-2xl px-5 text-center sm:px-8">
         <Reveal>
           <span className="font-mono-dossier inline-flex items-center gap-2 border border-gold/30 px-3 py-1.5 text-[0.55rem] tracking-label text-gold/90">
@@ -62,7 +70,7 @@ export function Newsletter() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <h2 className="mt-7 font-display text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.05] tracking-display text-paper">
+          <h2 className="mt-7 font-display text-[clamp(1.9rem,4vw,3rem)] font-semibold leading-[1.05] tracking-display text-paper text-glow-gold">
             Get word when the next file opens.
           </h2>
         </Reveal>
@@ -127,9 +135,12 @@ export function Newsletter() {
         </Reveal>
 
         <Reveal delay={0.26}>
-          <p className="mt-6 font-mono-dossier text-[0.5rem] tracking-label text-paper-mute/40">
-            WE KEEP YOUR INFORMATION CONFIDENTIAL. NO THIRD-PARTY SHARING.
-          </p>
+          <div className="mt-6 flex flex-col items-center gap-3">
+            <p className="font-mono-dossier text-[0.5rem] tracking-label text-paper-mute/40">
+              WE KEEP YOUR INFORMATION CONFIDENTIAL. NO THIRD-PARTY SHARING.
+            </p>
+            <div className="rule-gold w-32" />
+          </div>
         </Reveal>
       </div>
     </section>

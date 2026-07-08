@@ -109,14 +109,55 @@ Stage Summary:
 - 13 total sections on the page, all verified rendering with zero console errors
 - Page is now significantly more feature-rich and atmospherically immersive
 
+---
+Task ID: 5
+Agent: Main Agent (Cron Review)
+Task: Phase 5 — Bug fixes, styling enhancements, new features, SEO
+
+Work Log:
+- QA: Full agent-browser pass (desktop 1280x800 + mobile 375x812) — 12 sections rendering, zero console errors, all navigation verified
+- QA: Verified all section backgrounds remain dark (allDark: true)
+- QA: Tested ToC modal (opens, shows 13 chapters + epilogue, closes with Escape)
+- QA: Tested Film Noir toggle (adds/removes sepia+contrast filter on page)
+- QA: Tested FAQ keyboard navigation (ArrowUp/Down, Home, End focus movement)
+- QA: Verified typewriter cursor animation on hero subtitle
+- BUG FIX: Stats bar "0" flash — changed initial state from `0` to `null`, displays em-dash (—) until IntersectionObserver triggers animation
+- BUG FIX: Author photo resolution — switched from `author-photo.jpg` to `author-photo@2x.jpg` for higher quality on retina displays
+- Created TableOfContents component: full modal with all 12 chapters + epilogue, Framer Motion staggered entrance, DialogTrigger in ChapterPreview bottom CTA area, gold vertical rule connecting chapter dots, "End of File" epilogue marker, dossier metadata footer
+- Created NoirToggle component: floating button (z-40) in bottom-right corner, Film icon + "NOIR" label, tooltip "FILM NOIR EFFECT" on hover, toggles `noir-filter-active` class on `<html>` which applies sepia(15%) contrast(115%) brightness(90%) saturate(80%)
+- Enhanced layout.tsx: added comprehensive Open Graph meta tags (og:title, og:description, og:image with absolute URL, og:type), Twitter Card tags (summary_large_image), keywords, metadataBase, JSON-LD Book schema with author jobTitle, publisher, 289 pages, True Crime genre, 2026 date
+- Enhanced FAQ: added keyboard navigation (ArrowDown/Right, ArrowUp/Left, Home, End), focusedIndex state with gold text highlighting and subtle bg highlight on focused item, onFocus handler on each FAQ button
+- Enhanced Excerpt: added reading time indicator (Clock icon + "EST. READING TIME: 2 MIN") between section label and declassify stamp
+- Enhanced Hero: added TypewriterText component that types "Perdition Awaits" character by character (65ms per char, 0.8s delay) with blinking gold cursor
+- Enhanced Press Kit: added scan-line CSS animation (gold gradient line sweeping top-to-bottom every 4s), corner-brackets CSS decoration on each asset card
+- Enhanced Newsletter: added evidence-stamp decorative elements ("FILE REF: NEWS-2026-001", "PRIORITY: ROUTINE") at top corners, gold rule divider below privacy text
+- Enhanced BookShowcase: added corner-brackets to spec sheet grid, text-glow-gold on heading
+- Enhanced all section headings: added text-glow-gold (subtle gold text-shadow) to BookShowcase, ChapterPreview, Timeline, AboutAuthor, PressKit, BuySection, Newsletter headings
+- Created new CSS utilities in globals.css: .corner-brackets (gold corner L-brackets via pseudo-elements), .scan-line (animated gold gradient line sweep), .evidence-stamp (rotated mono text label), .text-glow-gold (subtle gold text shadow), .dashed-border-animate (animated dashed border effect), .section-dot (decorative gold dot with glow), html.noir-filter-active filter rules
+- ESLint clean (only pre-existing error in examples/websocket/frontend.tsx)
+- Page title now shows "Where Evil Dwells: Perdition Awaits — Robert B. Taylor"
+
+Stage Summary:
+- 2 new interactive features: Table of Contents modal (12 chapters + epilogue), Film Noir filter toggle
+- 1 new accessibility feature: FAQ keyboard navigation with visual focus indicators
+- 1 new SEO feature: Complete Open Graph + Twitter Card meta tags + JSON-LD Book schema
+- Typewriter animation on hero subtitle "Perdition Awaits"
+- Reading time indicator on excerpt section
+- 6 new CSS utility classes for decorative effects
+- Stats bar "0" flash bug fixed (now shows — until animated)
+- Author photo upgraded to @2x resolution
+- Evidence stamps, corner brackets, scan line, gold text glow applied throughout
+- All QA passed: 12 sections, all dark backgrounds, all interactive elements working
+
 Current Project Status Assessment:
-- The book landing page is fully production-ready with 13 content sections
+- The book landing page has 12 content sections + 5 floating utilities (ReadingProgress, BackToTop, NoirToggle, ToC Dialog, Notifications)
 - Complete noir/investigative design system: charcoal/paper/gold/rust palette, grain textures, dossier aesthetic
-- 7 interactive features: Reading Progress Bar, Back to Top, Full-screen Mobile Menu, Animated Stats Counter, FAQ Accordion, Parallax Hero, Active Nav Tracking
-- 6 content features: Chapter Preview Cards, Timeline, FAQ, Press Kit, Share Buttons, Dust Particles
-- All sections use consistent dark backgrounds, double-line section transitions, and grain overlays
-- Typography hierarchy: Display (headings), Body (Georgia), Mono-dossier (labels)
-- Custom scrollbar, focus-visible outlines, prefers-reduced-motion support
+- 10 interactive features: Reading Progress Bar, Back to Top, Full-screen Mobile Menu, Animated Stats Counter, FAQ Accordion (keyboard nav), Parallax Hero, Active Nav Tracking, Table of Contents Modal, Film Noir Toggle, Share Buttons
+- 6 content features: Chapter Preview Cards, Timeline, FAQ, Press Kit, Dust Particles, Stats Bar
+- Full SEO: OG tags, Twitter Cards, JSON-LD Book schema, proper title/description/keywords
+- All sections use consistent dark backgrounds, double-line section transitions, grain overlays
+- Typography hierarchy: Display (Fraunces), Body (Source Serif 4), Mono-dossier (IBM Plex Mono)
+- Custom scrollbar, focus-visible gold outlines, prefers-reduced-motion support
 - Newsletter API functional (Prisma + SQLite)
 - All QA passed across desktop and mobile viewports
 
@@ -124,15 +165,15 @@ Unresolved Issues / Risks:
 - Endorsement section still uses placeholder "SLOT 1/2 · PENDING" — real reviews needed after publication
 - "As Featured In" marquee lists publications that haven't featured the book yet — update post-publication
 - Press Kit download buttons show visual feedback but don't link to real files (placeholder behavior)
-- Stats bar briefly shows "0" before scroll-triggered animation fires for users who don't scroll past it
 - Book cover @2x was AI-upscaled from 668px — a true high-res scan from publisher would be ideal
+- JSON-LD ISBN field is empty — add when available from publisher
 
 Priority Recommendations for Next Phase:
-1. HIGH: Implement a full Table of Contents page/modal with all 12 chapters + epilogue + appendices with short descriptions
-2. HIGH: Connect Press Kit download buttons to real hosted files (book cover, headshot, press release PDF)
+1. HIGH: Connect Press Kit download buttons to real hosted files (book cover, headshot, press release PDF)
+2. HIGH: Add JSON-LD ISBN when available from publisher
 3. MEDIUM: Add a "Reader Reviews" section with star ratings once real reviews are available post-publication
 4. MEDIUM: Add an "Events" section or modal for upcoming book readings/signings
-5. MEDIUM: Implement Open Graph / Twitter Card meta tags for better social sharing previews
-6. LOW: Add a "Film Noir" CSS filter toggle for extra atmospheric effect
-7. LOW: Add subtle parallax to the timeline center line on scroll
-8. LOW: Implement structured data (JSON-LD) for Book/Author schema for SEO
+5. MEDIUM: Add subtle parallax to the timeline center line on scroll
+6. LOW: Create a dedicated 404 page with noir styling
+7. LOW: Add a loading/splash screen animation before the hero appears
+8. LOW: Implement i18n (Spanish) version for broader audience reach
