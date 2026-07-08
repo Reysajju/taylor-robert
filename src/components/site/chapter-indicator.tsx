@@ -16,13 +16,16 @@ const SECTION_MAP: Record<
   "#chapters": { desktop: "§ 03", mobile: "§ 03" },
   "#excerpt": { desktop: "§ 02", mobile: "§ 02" },
   "#timeline": { desktop: "CHRONOLOGY", mobile: "CHRONOLOGY" },
+  "#case-board": { desktop: "EVIDENCE BOARD", mobile: "EVIDENCE" },
   "#subjects": { desktop: "SUBJECTS", mobile: "SUBJECTS" },
   "#author": { desktop: "§ 03", mobile: "§ 03" },
   "#voices": { desktop: "§ 04", mobile: "§ 04" },
   "#reviews": { desktop: "REVIEWS", mobile: "REVIEWS" },
+  "#audio-preview": { desktop: "AUDIO PREVIEW", mobile: "AUDIO" },
   "#faq": { desktop: "§ 05", mobile: "§ 05" },
   "#press": { desktop: "PRESS", mobile: "PRESS" },
   "#buy": { desktop: "§ 05 ACQUIRE", mobile: "§ 05" },
+  "#related-works": { desktop: "FURTHER READING", mobile: "READING" },
   "#newsletter": { desktop: "CASE FILE", mobile: "CASE FILE" },
 };
 

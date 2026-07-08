@@ -67,7 +67,7 @@ export function ReaderReviews() {
   return (
     <section
       id="reviews"
-      className="grain-overlay concrete-texture section-transition relative overflow-hidden border-t border-paper/10 bg-charcoal-soft py-24 sm:py-32"
+      className="grain-overlay concrete-texture section-transition relative overflow-hidden border-t border-paper/10 bg-charcoal-soft py-24 sm:py-32 classified-watermark"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         {/* Section header */}
@@ -90,7 +90,7 @@ export function ReaderReviews() {
 
         {/* Average rating dossier stat */}
         <Reveal delay={0.1}>
-          <div className="corner-brackets mb-14 inline-flex items-center gap-5 border border-paper/10 bg-charcoal/50 px-6 py-4 sm:gap-6 sm:px-8 sm:py-5">
+          <div className="corner-brackets mb-14 inline-flex items-center gap-5 border border-paper/10 bg-charcoal/50 px-6 py-4 sm:gap-6 sm:px-8 sm:py-5 shimmer-line">
             <span className="font-display text-4xl font-bold leading-none text-gold sm:text-5xl">
               {AVG_RATING}
             </span>

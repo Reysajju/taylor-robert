@@ -80,6 +80,21 @@ const SECTIONS = [
     desc: "Full chapter listing with descriptions",
     href: "#chapters",
   },
+  {
+    label: "Case Board",
+    desc: "Interactive evidence map — pins, red threads, connections",
+    href: "#case-board",
+  },
+  {
+    label: "Audio Preview",
+    desc: "AI-narrated excerpts from the Introduction and first chapters",
+    href: "#audio-preview",
+  },
+  {
+    label: "Related Works",
+    desc: "Essential reading and research bibliography",
+    href: "#related-works",
+  },
 ] as const
 
 /* ------------------------------------------------------------------ */

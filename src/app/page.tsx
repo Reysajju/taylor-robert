@@ -22,6 +22,10 @@ import { ChapterIndicator } from "@/components/site/chapter-indicator";
 import { ContactModal } from "@/components/site/contact-modal";
 import { NoirToggle } from "@/components/site/noir-toggle";
 import { ThemeSwitcher } from "@/components/site/theme-switcher";
+import { CaseBoard } from "@/components/site/case-board";
+import { AudioPreview } from "@/components/site/audio-preview";
+import { RelatedWorks } from "@/components/site/related-works";
+import { CursorTrail } from "@/components/site/micro-interactions";
 
 export default function Home() {
   return (
@@ -29,6 +33,7 @@ export default function Home() {
       <LoadingScreen />
       <ReadingProgress />
       <SiteNav />
+      <CursorTrail />
       <main className="flex-1">
         <Hero />
         <BookShowcase />
@@ -36,13 +41,16 @@ export default function Home() {
         <ChapterPreview />
         <Excerpt />
         <Timeline />
+        <CaseBoard />
         <KeyPlayers />
         <AboutAuthor />
         <Endorsements />
         <ReaderReviews />
+        <AudioPreview />
         <FAQ />
         <PressKit />
         <BuySection />
+        <RelatedWorks />
         <EventsSection />
         <Newsletter />
       </main>

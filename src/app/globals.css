@@ -944,6 +944,223 @@ html.noir-filter-active footer {
   opacity: 1;
 }
 
+/* ── Phase 8: New CSS Utilities ─────────────────────────── */
+
+/* Case board pin pulse — subtle throb for evidence pins */
+@keyframes pin-throb {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(176, 141, 87, 0); }
+  50% { box-shadow: 0 0 8px 2px rgba(176, 141, 87, 0.15); }
+}
+.case-board-container .absolute:active {
+  animation: pin-throb 0.6s ease-in-out;
+}
+
+/* Audio waveform continuous animation */
+@keyframes waveform-idle {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(0.7); }
+}
+
+/* Dossier number stamp — large faded background number */
+.dossier-number::after {
+  content: attr(data-number);
+  position: absolute;
+  right: -0.5rem;
+  bottom: -1.5rem;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 8rem;
+  line-height: 1;
+  color: rgba(176, 141, 87, 0.03);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Shimmer line — animated gold sweep across element */
+@keyframes shimmer-line {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.shimmer-line {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 30%, rgba(176, 141, 87, 0.06) 50%, transparent 70%);
+  animation: shimmer-line 4s ease-in-out infinite;
+}
+
+/* Typewriter cursor blink for audio status */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink::after {
+  content: "▎";
+  animation: cursor-blink 1s step-end infinite;
+  color: #b08d57;
+  margin-left: 2px;
+}
+
+/* Card spotlight — mouse-following spotlight effect */
+.card-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.card-spotlight::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(176, 141, 87, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.card-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Redacted text effect — solid black bar over text */
+.redacted {
+  position: relative;
+  display: inline;
+}
+.redacted span {
+  position: relative;
+  z-index: 1;
+}
+.redacted::before {
+  content: "";
+  position: absolute;
+  inset: -2px -4px;
+  background: #0f0f0e;
+  z-index: 2;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: right center;
+}
+.redacted:hover::before {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* Breathing border — subtle border color pulse */
+@keyframes border-breathe {
+  0%, 100% { border-color: rgba(176, 141, 87, 0.1); }
+  50% { border-color: rgba(176, 141, 87, 0.3); }
+}
+.border-breathe {
+  animation: border-breathe 3s ease-in-out infinite;
+}
+
+/* Classified watermark — diagonal repeating text */
+.classified-watermark {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 60px,
+    rgba(176, 141, 87, 0.015) 60px,
+    rgba(176, 141, 87, 0.015) 61px
+  );
+}
+
+/* Torn paper edge — bottom edge effect */
+.torn-edge-bottom {
+  position: relative;
+}
+.torn-edge-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(135deg, #0f0f0e 33.33%, transparent 33.33%) 0 0,
+    linear-gradient(225deg, #0f0f0e 33.33%, transparent 33.33%) 0 0;
+  background-size: 12px 100%;
+  background-repeat: repeat-x;
+}
+
+/* Magnetic button hover — slight scale up with shadow */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.3s ease;
+}
+.magnetic-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 20px rgba(176, 141, 87, 0.15),
+    0 0 0 1px rgba(176, 141, 87, 0.2);
+}
+
+/* Stagger entrance for list items */
+.stagger-entrance > * {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: stagger-in 0.5s ease forwards;
+}
+.stagger-entrance > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-entrance > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-entrance > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-entrance > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-entrance > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-entrance > *:nth-child(6) { animation-delay: 0.3s; }
+@keyframes stagger-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Evidence marker — small circle with crosshair lines */
+.evidence-marker {
+  position: relative;
+}
+.evidence-marker::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -12px;
+  width: 6px;
+  height: 6px;
+  border: 1px solid rgba(176, 141, 87, 0.5);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.evidence-marker::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -12px;
+  width: 12px;
+  height: 1px;
+  background: rgba(176, 141, 87, 0.3);
+  transform: translateY(-50%);
+}
+
+/* Gold underline accent — animated underline on hover */
+.gold-underline-accent {
+  position: relative;
+  display: inline-block;
+}
+.gold-underline-accent::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #b08d57;
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.gold-underline-accent:hover::after {
+  width: 100%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

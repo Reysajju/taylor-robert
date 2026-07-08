@@ -83,7 +83,7 @@ export function KeyPlayers() {
         >
           {gangs.map((gang) => (
             <StaggerItem key={gang.name} direction="up">
-              <div className="group relative corner-brackets hover-lift inner-glow border-glow-hover rounded-sm border border-paper/10 bg-charcoal-soft/60 p-5 transition-colors duration-300 hover:border-gold/40">
+              <div className="group relative corner-brackets hover-lift inner-glow border-glow-hover card-spotlight rounded-sm border border-paper/10 bg-charcoal-soft/60 p-5 transition-colors duration-300 hover:border-gold/40">
                 {/* Status badge */}
                 <div className="flex items-center gap-1.5">
                   <span

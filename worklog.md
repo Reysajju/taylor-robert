@@ -340,3 +340,112 @@ Priority Recommendations for Next Phase:
 7. LOW: Implement i18n (Spanish) version for broader audience reach
 8. LOW: Add dark/light mode toggle (currently dark-only)
 9. LOW: Add a "Related Books" recommendation section
+
+---
+Task ID: 8
+Agent: Main Agent (Cron Review)
+Task: Phase 8 — Case Board, Audio Preview (TTS), Related Works, micro-interactions, CSS polish
+
+Work Log:
+- QA: Full agent-browser pass (desktop 1280x900 + mobile 375x812) — 17 sections rendering, zero console errors
+- QA: Verified all section backgrounds remain dark (allDark: true across all 17 sections)
+- QA: Verified Case Board renders 10 pins + 13 SVG edge connections
+- QA: Verified Audio Preview renders 3 segment buttons + mute/reset controls
+- QA: Verified Related Works renders 6 bibliography entries
+- QA: Verified Search Modal now shows 16 results (was 13, added Case Board, Audio Preview, Related Works)
+- QA: Verified cursor trail canvas present at z-index 60 (desktop only, no touch devices)
+- QA: Verified Nav now has 8 desktop links (added "Case Board"), Footer has 10 nav links
+- QA: Verified Chapter Indicator tracks 16 sections (added #case-board, #audio-preview, #related-works)
+- QA: Mobile viewport: 17 sections, zero errors, responsive
+- Created CaseBoard component: "EVIDENCE BOARD" section with interactive SVG evidence map
+  - 10 draggable nodes (4 gangs, 2 locations, 2 events, 1 document, 1 person) using Pointer Events API
+  - 12 red-thread SVG edge connections with hover-reveal labels
+  - Grid dot pattern background, cork-board radial gradients
+  - Legend bar with icon types, connection count badges on each pin
+  - Reset button to restore default layout, touch device support
+  - Pin states: hover glow, drag scale, connection count ring
+- Created AudioPreview component: "AUDIO PREVIEW" section with TTS-narrated excerpts
+  - 3 playable segments (Introduction, Chapter 1, Chapter 3) with real TTS via z-ai-web-dev-sdk
+  - Custom audio player with waveform visualization (60 animated bars)
+  - Transport controls: mute/unmute, reset, progress bar with requestAnimationFrame tracking
+  - "jam" voice at 0.9 speed for British narrator feel
+  - Error handling, loading states, disabled state during generation
+- Created TTS API route: /api/tts (POST, accepts text/voice/speed, returns WAV audio, z-ai-web-dev-sdk)
+- Created RelatedWorks component: "FURTHER READING" section with 6 bibliography entries
+  - Books: The Mexican Mafia (Rafael), Gangs of LA (Dunn), Blood In Blood Out (Brook), Tattoos of the Heart (Boyle), The New Jim Crow (Alexander)
+  - Report: CDCR Strategic Plan 2004
+  - Relevance badges, book/report icons, hover gold underline accent
+  - Divided list layout with type icon, author, year, description
+- Created micro-interactions component: CursorTrail + TextScramble
+  - CursorTrail: gold particle trail following mouse (canvas-based, 100 particle cap, fade/shrink, desktop-only)
+  - TextScramble: IntersectionObserver-triggered decode animation for text elements
+- Created 12 new CSS utility classes in globals.css:
+  1. `.case-board-container .absolute:active` — pin-throb animation on drag
+  2. `@keyframes waveform-idle` — audio waveform base animation
+  3. `.dossier-number::after` — large faded background number stamp
+  4. `.shimmer-line` — animated gold sweep across element (4s infinite)
+  5. `.cursor-blink::after` — typewriter cursor blink for audio status
+  6. `.card-spotlight` — mouse-following spotlight radial gradient on hover
+  7. `.redacted` — solid black bar over text, hover to reveal (scaleX transition)
+  8. `.border-breathe` — subtle gold border color pulse (3s infinite)
+  9. `.classified-watermark` — diagonal repeating gold line pattern
+  10. `.torn-edge-bottom` — zigzag torn paper bottom edge effect
+  11. `.magnetic-btn` — hover lift + gold shadow combo
+  12. `.stagger-entrance` — CSS-only staggered entrance for list items
+  13. `.evidence-marker` — small circle + horizontal line bullet decoration
+  14. `.gold-underline-accent` — animated gold underline on hover (width 0→100%)
+- Enhanced Key Players: added `card-spotlight` class to gang cards
+- Enhanced Reader Reviews: added `classified-watermark` to section, `shimmer-line` to average rating card
+- Updated Nav: added "Case Board" link (now 8 desktop nav items)
+- Updated Footer: added "Case Board" and "Audio Preview" links (now 10 footer nav items)
+- Updated SearchModal: added "Case Board", "Audio Preview", "Related Works" entries (now 16 searchable results)
+- Updated ChapterIndicator: added #case-board (EVIDENCE BOARD), #audio-preview (AUDIO PREVIEW), #related-works (FURTHER READING)
+- Updated page.tsx: integrated CaseBoard, AudioPreview, RelatedWorks, CursorTrail into main layout
+- ESLint clean (only pre-existing error in examples/websocket/frontend.tsx)
+
+Stage Summary:
+- 3 new major content sections: Interactive Case Board (draggable evidence map), Audio Preview (TTS-narrated excerpts), Related Works (bibliography)
+- 1 new API route: /api/tts (text-to-speech via z-ai-web-dev-sdk)
+- 1 new utility component: micro-interactions (CursorTrail + TextScramble)
+- 14 new CSS utility classes for atmospheric effects and micro-interactions
+- Page now has 17 content sections + 7 floating utilities (added CursorTrail)
+- Enhanced existing components with card-spotlight, classified-watermark, shimmer-line
+- All navigation, search, footer, and chapter indicator updated for new sections
+- All QA passed: 17 sections, all dark backgrounds, zero console errors, responsive on mobile
+
+Current Project Status Assessment:
+- The book landing page has 17 content sections + 7 floating utilities (ReadingProgress, BackToTop, NoirToggle, ThemeSwitcher, LoadingScreen, SearchModal, CursorTrail)
+- Complete noir/investigative design system: charcoal/paper/gold/rust palette, grain textures, dossier aesthetic
+- 19 interactive features: Reading Progress Bar, Back to Top, Full-screen Mobile Menu, Animated Stats Counter, FAQ Accordion (keyboard nav), Parallax Hero, Active Nav Tracking, Table of Contents Modal, Film Noir Toggle, Theme Switcher (3 modes), Search Modal (Cmd+K, 16 results), Share Buttons, Quote Carousel, Contact Modal, Interactive Case Board (draggable pins), Audio Preview (TTS playback), Cursor Trail (gold particles)
+- 11 content features: Chapter Preview Cards, Timeline, FAQ, Press Kit, Dust Particles, Stats Bar, Key Players, Reader Reviews, Case Board, Audio Preview, Related Works
+- Full SEO: OG tags, Twitter Cards, JSON-LD Book schema, proper title/description/keywords
+- Loading screen with noir "R" stamp animation
+- Cinematic page-frame edge vignette, smoke transitions, hover-lift, inner-glow, border-glow-hover, pulse-ring, fingerprint, ink-blot, photocopy, grain-heavy, redacted-reveal, glitch-hover, crosshair-focus, tape-mark, dossier-stamp, divider-diamond, red-thread, typewriter-line, shimmer-line, card-spotlight, classified-watermark, border-breathe, torn-edge-bottom, magnetic-btn, evidence-marker, gold-underline-accent, cursor-blink, redacted, dossier-number, stagger-entrance
+- 36+ CSS utility classes for atmospheric and decorative effects
+- All sections use consistent dark backgrounds, double-line section transitions, grain overlays
+- Typography hierarchy: Display (Fraunces), Body (Source Serif 4), Mono-dossier (IBM Plex Mono)
+- Custom scrollbar with gold gradient streak, focus-visible gold outlines, prefers-reduced-motion support
+- Newsletter API functional (Prisma + SQLite), Contact API functional (Prisma + SQLite), TTS API functional (z-ai-web-dev-sdk)
+- All QA passed across desktop and mobile viewports
+
+Unresolved Issues / Risks:
+- Endorsement section still uses placeholder "SLOT 1/2 · PENDING" — real reviews needed after publication
+- "As Featured In" marquee lists publications that haven't featured the book yet — update post-publication
+- Press Kit download buttons show visual feedback but don't link to real files (placeholder behavior)
+- Book cover @2x was AI-upscaled from 668px — a true high-res scan from publisher would be ideal
+- JSON-LD ISBN field is empty — add when available from publisher
+- Theme Switcher modifies CSS custom properties globally — ensure no conflicts with future component additions
+- Reader Reviews use placeholder reviews — replace with real reviews after publication
+- Audio Preview TTS uses "jam" voice — consider alternative voice options for different narrator feels
+- CursorTrail uses canvas at z-60 — verify no conflict with modals/dialogs at higher z-index
+
+Priority Recommendations for Next Phase:
+1. HIGH: Connect Press Kit download buttons to real hosted files (book cover, headshot, press release PDF)
+2. HIGH: Add JSON-LD ISBN when available from publisher
+3. MEDIUM: Create a dedicated 404 page with noir styling (evidence-missing theme)
+4. MEDIUM: Add parallax scrolling to timeline center line
+5. MEDIUM: Add a "Chapter Deep-Dive" modal — click a chapter card to see extended summary + key themes
+6. MEDIUM: Implement scroll-triggered text scramble on section headings
+7. LOW: Implement i18n (Spanish) version for broader audience reach
+8. LOW: Add a "Behind the Research" photo gallery section
+9. LOW: Create animated SVG evidence tape connecting the case board to related sections
