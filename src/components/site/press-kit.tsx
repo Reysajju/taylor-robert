@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Reveal } from "./reveal";
+import { ContactTrigger } from "./contact-modal";
 import {
   Download,
   ImageIcon,
@@ -147,12 +148,11 @@ export function PressKit() {
                   the newsletter form below.
                 </p>
               </div>
-              <a
-                href="#newsletter"
+              <ContactTrigger
                 className="inline-flex items-center justify-center border border-paper/30 px-5 py-3 font-mono-dossier text-[0.65rem] tracking-label text-paper transition-all duration-300 hover:border-gold hover:bg-gold/10 hover:text-gold"
               >
                 GET IN TOUCH
-              </a>
+              </ContactTrigger>
             </div>
           </div>
         </Reveal>

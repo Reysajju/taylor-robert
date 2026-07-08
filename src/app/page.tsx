@@ -13,8 +13,11 @@ import { Endorsements } from "@/components/site/endorsements";
 import { FAQ } from "@/components/site/faq";
 import { PressKit } from "@/components/site/press-kit";
 import { BuySection } from "@/components/site/buy-section";
+import { EventsSection } from "@/components/site/events-section";
 import { Newsletter } from "@/components/site/newsletter";
 import { SiteFooter } from "@/components/site/site-footer";
+import { ChapterIndicator } from "@/components/site/chapter-indicator";
+import { ContactModal } from "@/components/site/contact-modal";
 import { NoirToggle } from "@/components/site/noir-toggle";
 import { ThemeSwitcher } from "@/components/site/theme-switcher";
 
@@ -36,10 +39,13 @@ export default function Home() {
         <FAQ />
         <PressKit />
         <BuySection />
+        <EventsSection />
         <Newsletter />
       </main>
       <SiteFooter />
+      <ContactModal />
       <BackToTop />
+      <ChapterIndicator />
       <ThemeSwitcher />
       <NoirToggle />
     </div>

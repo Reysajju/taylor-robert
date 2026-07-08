@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./reveal";
 import { cn } from "@/lib/utils";
 
@@ -70,9 +71,46 @@ const EVENTS: TimelineEvent[] = [
 ];
 
 export function Timeline() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const [lineOffset, setLineOffset] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = sectionRef.current;
+      const line = lineRef.current;
+      if (!section || !line) return;
+
+      const rect = section.getBoundingClientRect();
+      const sectionHeight = section.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      // Calculate how far the user has scrolled through the timeline section
+      // 0 = section top just reached viewport top
+      // 1 = section bottom just reached viewport bottom
+      const totalTravel = sectionHeight - viewportHeight;
+      if (totalTravel <= 0) {
+        setLineOffset(0);
+        return;
+      }
+
+      const scrolled = -rect.top;
+      const progress = Math.max(0, Math.min(1, scrolled / totalTravel));
+
+      // The line's own height — we shift it by progress * lineHeight
+      const lineHeight = line.offsetHeight;
+      setLineOffset(progress * lineHeight * 0.3);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section
       id="timeline"
+      ref={sectionRef}
       className="concrete-texture section-transition smoke-transition relative overflow-hidden border-t border-paper/10 bg-charcoal py-24 sm:py-32"
     >
       {/* Faint vertical line watermark */}
@@ -104,9 +142,13 @@ export function Timeline() {
 
         {/* Timeline layout */}
         <div className="relative mt-16">
-          {/* Central line */}
+          {/* Central line — parallax-driven */}
           <div
-            className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-transparent via-gold/30 to-transparent sm:left-1/2 sm:-translate-x-px"
+            ref={lineRef}
+            className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-transparent via-gold/30 to-transparent sm:left-1/2 sm:-translate-x-px transition-transform duration-300 ease-out"
+            style={{
+              transform: `translateY(${lineOffset}px)`,
+            }}
             aria-hidden
           />
 
@@ -178,6 +220,15 @@ export function Timeline() {
             </p>
           </div>
         </Reveal>
+
+        {/* Evidence stamp */}
+        <Reveal delay={0.45}>
+          <div className="mt-6 text-center">
+            <span className="evidence-stamp font-mono-dossier text-[0.45rem] tracking-[0.18em] uppercase text-paper-mute/20">
+              CHRONOLOGY REF: CR-2026-0042
+            </span>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -192,20 +243,35 @@ function TimelineCard({
 }) {
   return (
     <div
-      className={`group cursor-default transition-all duration-500 ${
+      className={cn(
+        "group cursor-default transition-all duration-500 rounded-sm p-3 -m-3 border border-transparent",
+        "hover:border-gold/40 hover:bg-charcoal-raised",
         align === "left" ? "text-left" : "text-right"
-      }`}
+      )}
     >
-      <span className="font-mono-dossier text-[0.55rem] tracking-label text-gold/60 group-hover:text-gold transition-colors">
+      {/* Red thread — visible on hover, connects card to center line */}
+      <div
+        className={cn(
+          "absolute top-4 h-px bg-gold/0 group-hover:bg-gold/25 transition-colors duration-500 w-3",
+          align === "right"
+            ? "right-full mr-2.5 sm:mr-0"
+            : "left-full ml-2.5 sm:ml-0"
+        )}
+        aria-hidden
+      />
+
+      <span className="font-mono-dossier text-[0.55rem] tracking-label text-gold/60 group-hover:text-gold transition-all duration-300 group-hover:text-[0.6rem]">
         {event.year}
       </span>
       <h3 className="mt-1.5 font-display text-base font-semibold tracking-display text-paper group-hover:text-gold transition-colors duration-300 sm:text-lg">
         {event.title}
       </h3>
-      <p className={cn(
-        "mt-2 font-body text-sm leading-relaxed text-paper-mute/70 max-w-sm sm:max-w-xs",
-        align === "right" ? "sm:ml-0" : "sm:mr-0",
-      )}>
+      <p
+        className={cn(
+          "mt-2 font-body text-sm leading-relaxed max-w-sm sm:max-w-xs transition-colors duration-500",
+          "text-paper-mute/70 group-hover:text-paper-mute"
+        )}
+      >
         {event.description}
       </p>
     </div>

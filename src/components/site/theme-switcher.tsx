@@ -129,7 +129,7 @@ export function ThemeSwitcher() {
         <div
           ref={panelRef}
           className="absolute bottom-full right-0 mb-2 border border-paper/15 bg-charcoal-deep p-4"
-          style={{ minWidth: 160 }}
+          style={{ minWidth: 160, position: "absolute" }}
         >
           <p className="mb-3 font-mono-dossier text-[0.55rem] tracking-[0.18em] uppercase text-paper-mute/60">
             Color Temperature

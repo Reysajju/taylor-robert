@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "./reveal";
+import { ContactTrigger } from "./contact-modal";
 import { GOODREADS_URL } from "@/lib/retailers";
 import { ShareButtons } from "./share-buttons";
 
@@ -131,12 +132,9 @@ export function SiteFooter() {
               </p>
               <ul className="space-y-2.5 font-body text-base text-paper-mute">
                 <li>
-                  <a
-                    href="#newsletter"
-                    className="link-underline hover:text-paper"
-                  >
+                  <ContactTrigger className="link-underline hover:text-paper">
                     Press &amp; media
-                  </a>
+                  </ContactTrigger>
                 </li>
                 <li>
                   <a
@@ -147,20 +145,14 @@ export function SiteFooter() {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#newsletter"
-                    className="link-underline hover:text-paper"
-                  >
+                  <ContactTrigger className="link-underline hover:text-paper">
                     Speaking requests
-                  </a>
+                  </ContactTrigger>
                 </li>
                 <li>
-                  <a
-                    href="#newsletter"
-                    className="link-underline hover:text-paper"
-                  >
+                  <ContactTrigger className="link-underline hover:text-paper">
                     Rights &amp; permissions
-                  </a>
+                  </ContactTrigger>
                 </li>
               </ul>
             </div>

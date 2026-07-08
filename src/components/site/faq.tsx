@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Reveal } from "./reveal";
+import { ContactTrigger } from "./contact-modal";
 import { cn } from "@/lib/utils";
 
 interface FAQItem {
@@ -250,12 +251,9 @@ export function FAQ() {
           <div className="mt-10 text-center">
             <p className="font-mono-dossier text-[0.55rem] tracking-label text-paper-mute/40">
               HAVE ADDITIONAL QUESTIONS?{" "}
-              <a
-                href="#newsletter"
-                className="text-gold/60 hover:text-gold transition-colors link-underline"
-              >
+              <ContactTrigger className="text-gold/60 hover:text-gold transition-colors link-underline">
                 CONTACT US
-              </a>
+              </ContactTrigger>
             </p>
           </div>
         </Reveal>
