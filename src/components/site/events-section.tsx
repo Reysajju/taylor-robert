@@ -2,6 +2,7 @@
 
 import { Reveal, Stagger, StaggerItem } from "./reveal";
 import { MapPin } from "lucide-react";
+import Link from "next/link";
 
 interface EventItem {
   date: string;
@@ -116,15 +117,15 @@ export function EventsSection() {
         {/* Bottom CTA */}
         <Reveal delay={0.3}>
           <div className="mt-14 flex items-center justify-center">
-            <a
-              href="#newsletter"
+            <Link
+              href="/"
               className="group inline-flex items-center gap-2 font-mono-dossier text-[0.6rem] tracking-label text-paper-mute/60 transition-colors duration-300 hover:text-gold"
             >
               FOLLOW FOR UPDATES
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>
-            </a>
+            </Link>
           </div>
         </Reveal>
       </div>

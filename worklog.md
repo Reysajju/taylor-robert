@@ -544,3 +544,40 @@ Priority Recommendations for Next Phase:
 7. LOW: Implement i18n (Spanish) version for broader audience reach
 8. LOW: Add dark/light mode toggle (currently dark-only)
 9. LOW: Add a "Reading List" widget — save book to local storage with a floating CTA
+---
+Task ID: 9
+Agent: Main Agent
+Task: Major restructure — multi-page architecture, remove social icons, SEO optimization, fix nav conflicts, add favicon
+
+Work Log:
+- Removed social media share icons (Twitter/X, Facebook) from footer "SHARE THIS FILE" section and buy section
+- Fixed ReadingProgress component — removed the floating tooltip that appeared "top middle" conflicting with nav buttons (was z-[61] fixed top-2 left-1/2)
+- Created favicon (64x64) and apple-touch-icon (180x180) from author photo using PIL center-crop
+- Created SubPageLayout component for consistent sub-page design (breadcrumb back link, section label, title)
+- Created 14 sub-page routes with per-page SEO metadata:
+  - /chapters, /excerpt, /timeline, /case-board, /subjects, /author-qa
+  - /reviews (Endorsements + ReaderReviews combined), /audio, /faq
+  - /press, /research, /related, /events, /buy (+ Newsletter)
+- Simplified homepage to: Hero → BookShowcase → StatsBar → AboutAuthor → ExploreGrid → Newsletter
+- Created ExploreGrid component: 14-card grid linking to all sub-pages with icons, labels, descriptions, hover effects
+- Rewrote nav.tsx: all links now use Next.js Link with page paths (no more #anchors), uses usePathname for active state, closes mobile menu on route change
+- Rewrote site-footer.tsx: 4-column grid (Navigate, Explore, Purchase, Imprint) with Link components, removed share section
+- Rewrote search-modal.tsx: 16 searchable pages with router.push navigation, highlights current page
+- Updated hero.tsx "Read an Excerpt" to Link to /excerpt
+- Updated book-showcase.tsx "OR CHOOSE ANOTHER RETAILER" to Link to /buy
+- Updated excerpt.tsx "CONTINUE READING" to Link to /buy
+- Updated chapter-preview.tsx modal "READ THE EXCERPT" to Link to /excerpt
+- Updated events-section.tsx "FOLLOW FOR UPDATES" to Link to /
+- Enhanced layout.tsx SEO: viewport export, 30+ keywords, title template, robots config, canonical URL, apple-touch-icon, enhanced JSON-LD with @graph (Book + WebSite + BreadcrumbList)
+- Removed ChapterIndicator from homepage (no longer needed with short page)
+- Verified all navigation works via agent-browser QA
+
+Stage Summary:
+- Website restructured from single-page to 15-page multi-page app
+- Homepage is now concise: Hero + Book + Stats + Author + Explore Grid + Newsletter
+- All sub-pages have consistent layout with breadcrumb navigation back to home
+- Full SEO: per-page metadata, 30+ true-crime keywords, structured data (Book, WebSite, BreadcrumbList schemas)
+- Author photo set as favicon (browser tab icon)
+- Reading progress tooltip conflict with nav fixed (removed floating label)
+- Social share icons removed as client has no social media accounts
+- All nav, footer, and search links are clickable and redirecting properly

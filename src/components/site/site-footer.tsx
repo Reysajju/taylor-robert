@@ -1,27 +1,35 @@
 "use client";
 
+import Link from "next/link";
 import { Reveal } from "./reveal";
 import { ContactTrigger } from "./contact-modal";
 import { GOODREADS_URL } from "@/lib/retailers";
-const SOCIALS = [
+
+const NAV_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "Chapters", href: "/chapters" },
+  { label: "Excerpt", href: "/excerpt" },
+  { label: "Timeline", href: "/timeline" },
+  { label: "Evidence Board", href: "/case-board" },
+  { label: "The Prison Gangs", href: "/subjects" },
+  { label: "Author Q&A", href: "/author-qa" },
+  { label: "Reviews", href: "/reviews" },
+];
+
+const EXPLORE_LINKS = [
+  { label: "Audio Preview", href: "/audio" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Press Kit", href: "/press" },
+  { label: "Behind the Research", href: "/research" },
+  { label: "Further Reading", href: "/related" },
+  { label: "Events", href: "/events" },
+  { label: "Buy the Book", href: "/buy" },
+];
+
+const RETAILERS = [
   { label: "Goodreads", href: GOODREADS_URL },
   { label: "Amazon", href: "https://www.amazon.com/WHERE-EVIL-DWELLS-PERDITION-AWAITS/dp/B0H2KK7RJQ" },
   { label: "Blackwell's", href: "https://blackwells.co.uk/bookshop/search/author/%20Robert%20Taylor" },
-];
-
-const NAV = [
-  { label: "The Book", href: "#book" },
-  { label: "Excerpt", href: "#excerpt" },
-  { label: "Case Board", href: "#case-board" },
-  { label: "Subjects", href: "#subjects" },
-  { label: "Author", href: "#author" },
-  { label: "Author Q&A", href: "#author-qa" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Audio Preview", href: "#audio-preview" },
-  { label: "Research", href: "#research" },
-  { label: "Timeline", href: "#timeline" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Buy", href: "#buy" },
 ];
 
 export function SiteFooter() {
@@ -70,22 +78,22 @@ export function SiteFooter() {
           </div>
         </Reveal>
 
-        {/* Middle: nav + socials */}
+        {/* Middle: nav columns */}
         <Reveal delay={0.05}>
           <div className="grid grid-cols-1 gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
             <div>
               <p className="font-mono-dossier mb-4 text-[0.55rem] tracking-label text-paper-mute/50">
-                EXPLORE
+                NAVIGATE
               </p>
               <ul className="space-y-2.5">
-                {NAV.map((n) => (
+                {NAV_LINKS.map((n) => (
                   <li key={n.href}>
-                    <a
+                    <Link
                       href={n.href}
                       className="link-underline font-body text-base text-paper-mute hover:text-paper"
                     >
                       {n.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -93,10 +101,28 @@ export function SiteFooter() {
 
             <div>
               <p className="font-mono-dossier mb-4 text-[0.55rem] tracking-label text-paper-mute/50">
-                CONNECT
+                EXPLORE
               </p>
               <ul className="space-y-2.5">
-                {SOCIALS.map((s) => (
+                {EXPLORE_LINKS.map((n) => (
+                  <li key={n.href}>
+                    <Link
+                      href={n.href}
+                      className="link-underline font-body text-base text-paper-mute hover:text-paper"
+                    >
+                      {n.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="font-mono-dossier mb-4 text-[0.55rem] tracking-label text-paper-mute/50">
+                PURCHASE
+              </p>
+              <ul className="space-y-2.5">
+                {RETAILERS.map((s) => (
                   <li key={s.label}>
                     <a
                       href={s.href}
@@ -122,36 +148,24 @@ export function SiteFooter() {
                 <li>First Edition &middot; 2026</li>
               </ul>
             </div>
+          </div>
+        </Reveal>
 
-            <div>
-              <p className="font-mono-dossier mb-4 text-[0.55rem] tracking-label text-paper-mute/50">
-                INQUIRIES
-              </p>
-              <ul className="space-y-2.5 font-body text-base text-paper-mute">
-                <li>
-                  <ContactTrigger className="link-underline hover:text-paper">
-                    Press &amp; media
-                  </ContactTrigger>
-                </li>
-                <li>
-                  <a
-                    href="#press"
-                    className="link-underline hover:text-paper"
-                  >
-                    Press kit
-                  </a>
-                </li>
-                <li>
-                  <ContactTrigger className="link-underline hover:text-paper">
-                    Speaking requests
-                  </ContactTrigger>
-                </li>
-                <li>
-                  <ContactTrigger className="link-underline hover:text-paper">
-                    Rights &amp; permissions
-                  </ContactTrigger>
-                </li>
-              </ul>
+        {/* Inquiries row */}
+        <Reveal delay={0.1}>
+          <div className="border-t border-paper/10 py-8">
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+              <ContactTrigger className="link-underline font-mono-dossier text-[0.6rem] tracking-label text-paper-mute hover:text-paper">
+                Press &amp; media
+              </ContactTrigger>
+              <span className="hidden h-4 w-px bg-paper/10 sm:block" />
+              <ContactTrigger className="link-underline font-mono-dossier text-[0.6rem] tracking-label text-paper-mute hover:text-paper">
+                Speaking requests
+              </ContactTrigger>
+              <span className="hidden h-4 w-px bg-paper/10 sm:block" />
+              <ContactTrigger className="link-underline font-mono-dossier text-[0.6rem] tracking-label text-paper-mute hover:text-paper">
+                Rights &amp; permissions
+              </ContactTrigger>
             </div>
           </div>
         </Reveal>
@@ -162,7 +176,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} ROBERT B. TAYLOR. ALL RIGHTS RESERVED.
           </p>
           <p className="font-mono-dossier text-[0.5rem] tracking-label text-paper-mute/30">
-            BUILT AS A DOSSIER · WHERE EVIL DWELLS · PERDITION AWAITS
+            BUILT AS A DOSSIER &middot; WHERE EVIL DWELLS &middot; PERDITION AWAITS
           </p>
         </div>
       </div>

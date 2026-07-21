@@ -4,6 +4,7 @@ import { Reveal } from "./reveal";
 import { BookCover } from "./book-cover";
 import { RETAILERS } from "@/lib/retailers";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export function BookShowcase() {
   const primary = RETAILERS.find((r) => r.tier === "primary")!;
@@ -98,12 +99,12 @@ export function BookShowcase() {
                   BUY ON {primary.name.toUpperCase()}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
-                <a
-                  href="#buy"
+                <Link
+                  href="/buy"
                   className="font-mono-dossier text-[0.65rem] tracking-label text-paper-mute link-underline hover:text-gold"
                 >
                   OR CHOOSE ANOTHER RETAILER &rarr;
-                </a>
+                </Link>
               </div>
             </Reveal>
           </div>

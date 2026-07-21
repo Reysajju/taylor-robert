@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Lock, ArrowRight, Clock } from "lucide-react";
 import { Reveal } from "./reveal";
+import Link from "next/link";
 
 /**
  * A "redacted" span — gray bar covers the text and slides open
@@ -155,13 +156,13 @@ export function Excerpt() {
                 FROM &ldquo;WHERE EVIL DWELLS: PERDITION AWAITS&rdquo;
               </p>
             </div>
-            <a
-              href="#buy"
+            <Link
+              href="/buy"
               className="group inline-flex items-center gap-2 border border-paper/30 px-5 py-3 font-mono-dossier text-[0.65rem] tracking-label text-paper transition-colors hover:border-gold hover:bg-gold/10 hover:text-gold"
             >
               CONTINUE READING
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-            </a>
+            </Link>
           </div>
         </Reveal>
       </div>

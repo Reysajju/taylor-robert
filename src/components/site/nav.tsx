@@ -1,43 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SearchModal } from "./search-modal";
 
 const LINKS = [
-  { href: "#book", label: "The Book" },
-  { href: "#excerpt", label: "Excerpt" },
-  { href: "#case-board", label: "Case Board" },
-  { href: "#subjects", label: "Subjects" },
-  { href: "#author", label: "Author" },
-  { href: "#reviews", label: "Reviews" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#buy", label: "Buy" },
+  { href: "/chapters", label: "Chapters" },
+  { href: "/excerpt", label: "Excerpt" },
+  { href: "/subjects", label: "Subjects" },
+  { href: "/author-qa", label: "Q&A" },
+  { href: "/reviews", label: "Reviews" },
+  { href: "/buy", label: "Buy" },
 ];
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 40);
-
-      // Track active section for gold underline highlight
-      const sections = LINKS.map((l) => l.href.replace("#", ""));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 120) {
-            setActiveSection(sections[i]);
-            break;
-          }
-        }
-      }
-    };
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -51,6 +36,12 @@ export function SiteNav() {
     };
   }, [open]);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- close mobile menu on navigation
+    setOpen(false);
+  }, [pathname]);
+
   return (
     <header
       className={cn(
@@ -61,8 +52,8 @@ export function SiteNav() {
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-12">
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="group flex items-center gap-3"
           aria-label="Where Evil Dwells — home"
         >
@@ -80,33 +71,31 @@ export function SiteNav() {
               PERDITION AWAITS
             </span>
           </span>
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-6 md:flex">
           <SearchModal />
           <div className="h-4 w-px bg-paper/10" />
           {LINKS.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               className={cn(
                 "link-underline font-mono-dossier text-[0.7rem] tracking-label transition-colors duration-300",
-                activeSection === l.href.replace("#", "")
+                pathname === l.href
                   ? "text-paper link-underline-active"
                   : "text-paper-mute hover:text-paper",
               )}
             >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="https://www.amazon.com/WHERE-EVIL-DWELLS-PERDITION-AWAITS/dp/B0H2KK7RJQ"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/buy"
             className="group relative inline-flex items-center overflow-hidden border border-rust px-5 py-2.5 font-mono-dossier text-[0.7rem] tracking-label text-paper transition-all duration-300 hover:bg-rust hover:shadow-[0_0_20px_rgba(122,46,29,0.3)]"
           >
             <span className="relative z-10">Buy the Book</span>
-          </a>
+          </Link>
         </div>
 
         <button
@@ -137,36 +126,57 @@ export function SiteNav() {
             <span className="h-px flex-1 bg-gold/20" />
           </div>
 
+          {/* Home link */}
+          <Link
+            href="/"
+            onClick={() => setOpen(false)}
+            className={cn(
+              "group flex items-center gap-4 border-b border-paper/5 py-4 transition-all duration-300",
+              pathname === "/" && "text-gold"
+            )}
+          >
+            <span className="font-mono-dossier text-[0.55rem] tracking-label text-gold/40 transition-colors group-hover:text-gold">
+              00
+            </span>
+            <span className="font-display text-2xl font-semibold tracking-display text-paper transition-colors group-hover:text-gold sm:text-3xl">
+              Home
+            </span>
+            <span className="ml-auto text-paper-mute/30 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gold/60">
+              &rarr;
+            </span>
+          </Link>
+
           {LINKS.map((l, i) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
               className="group flex items-center gap-4 border-b border-paper/5 py-4 transition-all duration-300"
-              style={{ transitionDelay: open ? `${i * 75}ms` : "0ms" }}
+              style={{ transitionDelay: open ? `${(i + 1) * 75}ms` : "0ms" }}
             >
               <span className="font-mono-dossier text-[0.55rem] tracking-label text-gold/40 transition-colors group-hover:text-gold">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="font-display text-2xl font-semibold tracking-display text-paper transition-colors group-hover:text-gold sm:text-3xl">
+              <span className={cn(
+                "font-display text-2xl font-semibold tracking-display transition-colors group-hover:text-gold sm:text-3xl",
+                pathname === l.href ? "text-gold" : "text-paper"
+              )}>
                 {l.label}
               </span>
               <span className="ml-auto text-paper-mute/30 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gold/60">
                 &rarr;
               </span>
-            </a>
+            </Link>
           ))}
 
           {/* Buy CTA in mobile menu */}
-          <a
-            href="https://www.amazon.com/WHERE-EVIL-DWELLS-PERDITION-AWAITS/dp/B0H2KK7RJQ"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/buy"
             onClick={() => setOpen(false)}
             className="mt-8 inline-flex items-center justify-center border border-rust bg-rust/10 px-6 py-4 font-mono-dossier text-[0.72rem] tracking-label text-paper transition-all duration-300 hover:bg-rust"
           >
             BUY THE BOOK
-          </a>
+          </Link>
 
           {/* Bottom metadata */}
           <div className="mt-auto pb-8 pt-8">

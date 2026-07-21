@@ -5,6 +5,7 @@ import { Reveal } from "./reveal";
 import { TableOfContents } from "./table-of-contents";
 import { BookOpen, Lock, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import {
   Dialog,
   DialogContent,
@@ -422,14 +423,13 @@ export function ChapterPreview() {
                         PRE-ORDER TO ACCESS FULL CHAPTER UPON PUBLICATION
                       </p>
                     ) : (
-                      <a
-                        href="#excerpt"
-                        onClick={() => setDeepOpen(false)}
+                      <Link
+                        href="/excerpt"
                         className="magnetic-btn inline-flex items-center gap-2 border border-gold/30 bg-gold/5 px-5 py-2.5 font-mono-dossier text-[0.65rem] tracking-label text-gold transition-colors hover:bg-gold/10"
                       >
                         <BookOpen className="h-3.5 w-3.5" />
                         READ THE EXCERPT
-                      </a>
+                      </Link>
                     )}
                   </motion.div>
                 </div>

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from "react"
+import { useRouter, usePathname } from "next/navigation"
 import { Search, ArrowRight } from "lucide-react"
 import {
   Dialog,
@@ -11,100 +12,26 @@ import {
 import { cn } from "@/lib/utils"
 
 /* ------------------------------------------------------------------ */
-/*  Searchable sections                                                */
+/*  Searchable pages                                                   */
 /* ------------------------------------------------------------------ */
 
-const SECTIONS = [
-  {
-    label: "The Book",
-    desc: "Synopsis, specs, and details about Where Evil Dwells",
-    href: "#book",
-  },
-  {
-    label: "Chapter Preview",
-    desc: "12 chapters and epilogue preview",
-    href: "#chapters",
-  },
-  {
-    label: "Excerpt",
-    desc: "Read a declassified excerpt from the Introduction",
-    href: "#excerpt",
-  },
-  {
-    label: "Timeline",
-    desc: "Chronology of California's prison-gang crisis (1951–2000s)",
-    href: "#timeline",
-  },
-  {
-    label: "Subject Files",
-    desc: "Gang profiles — La EMe, Aryan Brotherhood, BGF, Nuestra Familia",
-    href: "#subjects",
-  },
-  {
-    label: "The Author",
-    desc: "About Robert B. Taylor — LAPD, L.A. County Probation Chief",
-    href: "#author",
-  },
-  {
-    label: "Voices",
-    desc: "Epigraph, pull-quote, and advance praise",
-    href: "#voices",
-  },
-  {
-    label: "Reader Reviews",
-    desc: "Star ratings and early reader reactions",
-    href: "#reviews",
-  },
-  {
-    label: "FAQ",
-    desc: "Frequently asked questions about the book",
-    href: "#faq",
-  },
-  {
-    label: "Press Kit",
-    desc: "Media resources, book cover, headshot, press release",
-    href: "#press",
-  },
-  {
-    label: "Buy the Book",
-    desc: "Purchase on Amazon, Kindle, Blackwell's",
-    href: "#buy",
-  },
-  {
-    label: "Newsletter",
-    desc: "Subscribe for updates on future releases",
-    href: "#newsletter",
-  },
-  {
-    label: "Table of Contents",
-    desc: "Full chapter listing with descriptions",
-    href: "#chapters",
-  },
-  {
-    label: "Case Board",
-    desc: "Interactive evidence map — pins, red threads, connections",
-    href: "#case-board",
-  },
-  {
-    label: "Audio Preview",
-    desc: "AI-narrated excerpts from the Introduction and first chapters",
-    href: "#audio-preview",
-  },
-  {
-    label: "Related Works",
-    desc: "Essential reading and research bibliography",
-    href: "#related-works",
-  },
-  {
-    label: "Author Q&A",
-    desc: "Interview questions and answers with Robert B. Taylor",
-    href: "#author-qa",
-  },
-  {
-    label: "Research Gallery",
-    desc: "Behind-the-scenes photographs and investigation artifacts",
-    href: "#research",
-  },
+const PAGES = [
+  { label: "Home", desc: "Book overview, synopsis, author, and explore the case file", href: "/" },
+  { label: "The Book", desc: "Synopsis, specs, and details about Where Evil Dwells", href: "/" },
+  { label: "Chapters", desc: "12 chapters and epilogue preview", href: "/chapters" },
+  { label: "Excerpt", desc: "Read a declassified excerpt from the Introduction", href: "/excerpt" },
+  { label: "Timeline", desc: "Chronology of California's prison-gang crisis (1951–2000s)", href: "/timeline" },
+  { label: "Subject Files", desc: "Gang profiles — La EMe, Aryan Brotherhood, BGF, Nuestra Familia", href: "/subjects" },
+  { label: "Evidence Board", desc: "Interactive evidence map — pins, red threads, connections", href: "/case-board" },
+  { label: "Author Q&A", desc: "Interview questions and answers with Robert B. Taylor", href: "/author-qa" },
+  { label: "Reviews", desc: "Reader reviews, advance praise, and endorsements", href: "/reviews" },
+  { label: "Audio Preview", desc: "AI-narrated excerpts from the Introduction and first chapters", href: "/audio" },
+  { label: "FAQ", desc: "Frequently asked questions about the book", href: "/faq" },
+  { label: "Press Kit", desc: "Media resources, book cover, headshot, press release", href: "/press" },
+  { label: "Behind the Research", desc: "Photographs and investigation artifacts", href: "/research" },
+  { label: "Further Reading", desc: "Essential reading and research bibliography", href: "/related" },
+  { label: "Events", desc: "Upcoming book readings, signings, and appearances", href: "/events" },
+  { label: "Buy the Book", desc: "Purchase on Amazon, Kindle, Blackwell's", href: "/buy" },
 ] as const
 
 /* ------------------------------------------------------------------ */
@@ -134,26 +61,6 @@ function HighlightMatch({ text, query }: { text: string; query: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  SearchTrigger — standalone button                                  */
-/* ------------------------------------------------------------------ */
-
-export function SearchTrigger({
-  onClick,
-}: {
-  onClick: () => void
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className="flex items-center justify-center w-8 h-8 rounded-xs border border-paper/10 bg-charcoal-soft text-paper-mute/60 hover:text-paper hover:border-gold/40 transition-colors duration-200"
-      aria-label="Search sections"
-    >
-      <Search className="size-4" />
-    </button>
-  )
-}
-
-/* ------------------------------------------------------------------ */
 /*  SearchModal — full component with trigger + keyboard shortcut      */
 /* ------------------------------------------------------------------ */
 
@@ -161,14 +68,16 @@ export function SearchModal() {
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState("")
   const inputRef = useRef<HTMLInputElement>(null)
+  const router = useRouter()
+  const pathname = usePathname()
 
   const filtered = query.trim()
-    ? SECTIONS.filter(
+    ? PAGES.filter(
         (s) =>
           s.label.toLowerCase().includes(query.toLowerCase()) ||
           s.desc.toLowerCase().includes(query.toLowerCase())
       )
-    : SECTIONS
+    : PAGES
 
   /* Keyboard shortcut: Cmd+K / Ctrl+K */
   useEffect(() => {
@@ -185,7 +94,6 @@ export function SearchModal() {
   /* Auto-focus input when opened */
   useEffect(() => {
     if (open) {
-      // small delay so the dialog animation starts first
       const t = setTimeout(() => inputRef.current?.focus(), 50)
       return () => clearTimeout(t)
     }
@@ -194,33 +102,34 @@ export function SearchModal() {
   const handleSelect = useCallback(
     (href: string) => {
       setOpen(false)
-      const el = document.querySelector(href)
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" })
+      setQuery("")
+      if (href === "/") {
+        router.push(href)
+      } else {
+        router.push(href)
       }
     },
-    []
+    [router]
   )
 
   return (
     <Dialog open={open} onOpenChange={(v) => { if (!v) setQuery(""); setOpen(v); }}>
-      {/* Inline trigger button — also accepts external triggers via SearchTrigger */}
+      {/* Trigger button */}
       <button
         onClick={() => setOpen(true)}
         className="flex items-center justify-center w-8 h-8 rounded-xs border border-paper/10 bg-charcoal-soft text-paper-mute/60 hover:text-paper hover:border-gold/40 transition-colors duration-200"
-        aria-label="Search sections (⌘K)"
+        aria-label="Search pages (⌘K)"
       >
         <Search className="size-4" />
       </button>
 
       <DialogContent
         showCloseButton={false}
-        className="fixed top-[20%] left-1/2 -translate-x-1/2 translate-y-0 z-50 w-full max-w-lg bg-charcoal-deep border-paper/10 rounded-xs p-0 shadow-2xl overflow-hidden"
+        className="fixed top-[20%] left-1/2 -translate-x-1/2 translate-y-0 z-50 w-[calc(100%-1.5rem)] max-w-lg bg-charcoal-deep border-paper/10 rounded-xs p-0 shadow-2xl overflow-hidden"
       >
-        {/* Visually hidden for accessibility */}
-        <DialogTitle className="sr-only">Search Sections</DialogTitle>
+        <DialogTitle className="sr-only">Search Pages</DialogTitle>
         <DialogDescription className="sr-only">
-          Find and navigate to sections of the page
+          Find and navigate to pages on this site
         </DialogDescription>
 
         {/* Search input */}
@@ -231,7 +140,7 @@ export function SearchModal() {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search sections…"
+            placeholder="Search pages…"
             className="flex-1 bg-transparent font-body text-paper text-sm placeholder:text-paper-mute/30 outline-none"
           />
           <kbd className="hidden sm:inline-flex items-center gap-1 rounded-xs border border-paper/10 bg-charcoal px-1.5 py-0.5 font-mono-dossier text-[10px] text-paper-mute/40 tracking-wider">
@@ -249,22 +158,18 @@ export function SearchModal() {
                     onClick={() => handleSelect(item.href)}
                     className={cn(
                       "flex items-center gap-3 w-full px-4 py-2.5 text-left transition-colors duration-150",
-                      "hover:bg-charcoal-raised"
+                      "hover:bg-charcoal-raised",
+                      pathname === item.href && "bg-gold/5"
                     )}
                     role="option"
-                    aria-selected={false}
+                    aria-selected={pathname === item.href}
                   >
-                    {/* Label */}
                     <span className="font-display text-paper text-sm leading-tight shrink-0 min-w-[120px]">
                       <HighlightMatch text={item.label} query={query} />
                     </span>
-
-                    {/* Description */}
                     <span className="font-body text-paper-mute/60 text-xs leading-snug flex-1 truncate">
                       <HighlightMatch text={item.desc} query={query} />
                     </span>
-
-                    {/* Arrow */}
                     <ArrowRight className="size-3.5 text-paper-mute/20 shrink-0" />
                   </button>
                 </li>

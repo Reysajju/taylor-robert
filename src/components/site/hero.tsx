@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { BookCover } from "./book-cover";
 import { useTilt } from "@/hooks/use-tilt";
@@ -141,13 +142,13 @@ export function Hero() {
             variants={item}
             className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
           >
-            <a
-              href="#excerpt"
+            <Link
+              href="/excerpt"
               className="group inline-flex items-center justify-center gap-2.5 bg-rust px-7 py-4 font-mono-dossier text-[0.72rem] tracking-label text-paper transition-all duration-300 hover:bg-rust-bright hover:shadow-[0_0_24px_rgba(122,46,29,0.25)]"
             >
               <BookOpen className="h-4 w-4" />
               Read an Excerpt
-            </a>
+            </Link>
             <a
               href="https://www.amazon.com/WHERE-EVIL-DWELLS-PERDITION-AWAITS/dp/B0H2KK7RJQ"
               target="_blank"
