@@ -23,7 +23,7 @@ const EXPLORE_LINKS = [
   { label: "Behind the Research", href: "/research" },
   { label: "Further Reading", href: "/related" },
   { label: "Events", href: "/events" },
-  { label: "Buy the Book", href: "/buy" },
+  { label: "Buy the Book", href: "https://www.amazon.com/WHERE-EVIL-DWELLS-PERDITION-AWAITS/dp/B0H2KK7RJQ", external: true },
 ];
 
 const RETAILERS = [
@@ -106,12 +106,23 @@ export function SiteFooter() {
               <ul className="space-y-2.5">
                 {EXPLORE_LINKS.map((n) => (
                   <li key={n.href}>
-                    <Link
-                      href={n.href}
-                      className="link-underline font-body text-base text-paper-mute hover:text-paper"
-                    >
-                      {n.label}
-                    </Link>
+                    {"external" in n && n.external ? (
+                      <a
+                        href={n.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link-underline font-body text-base text-paper-mute hover:text-paper"
+                      >
+                        {n.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={n.href}
+                        className="link-underline font-body text-base text-paper-mute hover:text-paper"
+                      >
+                        {n.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

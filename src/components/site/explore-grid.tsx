@@ -27,6 +27,7 @@ interface ExploreCard {
   description: string;
   icon: React.ReactNode;
   accent?: string;
+  external?: boolean;
 }
 
 const CARDS: ExploreCard[] = [
@@ -122,7 +123,8 @@ const CARDS: ExploreCard[] = [
     icon: <CalendarDays className="h-5 w-5" />,
   },
   {
-    href: "/buy",
+    href: "https://www.amazon.com/WHERE-EVIL-DWELLS-PERDITION-AWAITS/dp/B0H2KK7RJQ",
+    external: true,
     label: "§ 05 — ACQUIRE",
     title: "Buy the Book",
     description: "Available in paperback and ebook — Amazon, Kindle, and more.",
@@ -138,6 +140,39 @@ function StarIcon() {
     </svg>
   );
 }
+
+const cardInner = (card: ExploreCard) => (
+  <>
+    {/* Label */}
+    <span className="font-mono-dossier text-[0.45rem] tracking-label text-paper-mute/40">
+      {card.label}
+    </span>
+
+    {/* Icon + Title */}
+    <div className="mt-4 flex items-start justify-between gap-3">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-paper/15 text-paper-mute/60 transition-all duration-300 group-hover:border-gold/40 group-hover:text-gold group-hover:shadow-[0_0_12px_rgba(176,141,87,0.08)]">
+        {card.icon}
+      </div>
+      <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-paper-mute/20 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gold/60" />
+    </div>
+
+    {/* Title */}
+    <h3 className="mt-3 font-display text-lg font-semibold tracking-display text-paper transition-colors duration-300 group-hover:text-gold">
+      {card.title}
+    </h3>
+
+    {/* Description */}
+    <p className="mt-2 text-sm leading-relaxed text-paper-mute/60 line-clamp-2">
+      {card.description}
+    </p>
+
+    {/* Bottom accent line */}
+    <div
+      className="absolute bottom-0 left-0 h-px w-0 bg-gold/50 transition-all duration-500 group-hover:w-full"
+      aria-hidden
+    />
+  </>
+);
 
 export function ExploreGrid() {
   return (
@@ -173,43 +208,30 @@ export function ExploreGrid() {
           delay={0.1}
         >
           {CARDS.map((card) => (
-            <StaggerItem key={card.href}>
-              <Link
-                href={card.href}
-                className={cn(
-                  "group relative flex flex-col border border-paper/10 bg-charcoal-soft/40 p-5 sm:p-6 transition-all duration-500 hover:border-gold/30 hover:bg-charcoal-soft",
-                  card.accent
-                )}
-              >
-                {/* Label */}
-                <span className="font-mono-dossier text-[0.45rem] tracking-label text-paper-mute/40">
-                  {card.label}
-                </span>
-
-                {/* Icon + Title */}
-                <div className="mt-4 flex items-start justify-between gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-paper/15 text-paper-mute/60 transition-all duration-300 group-hover:border-gold/40 group-hover:text-gold group-hover:shadow-[0_0_12px_rgba(176,141,87,0.08)]">
-                    {card.icon}
-                  </div>
-                  <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-paper-mute/20 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gold/60" />
-                </div>
-
-                {/* Title */}
-                <h3 className="mt-3 font-display text-lg font-semibold tracking-display text-paper transition-colors duration-300 group-hover:text-gold">
-                  {card.title}
-                </h3>
-
-                {/* Description */}
-                <p className="mt-2 text-sm leading-relaxed text-paper-mute/60 line-clamp-2">
-                  {card.description}
-                </p>
-
-                {/* Bottom accent line */}
-                <div
-                  className="absolute bottom-0 left-0 h-px w-0 bg-gold/50 transition-all duration-500 group-hover:w-full"
-                  aria-hidden
-                />
-              </Link>
+            <StaggerItem key={card.label}>
+              {card.external ? (
+                <a
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    "group relative flex flex-col border border-paper/10 bg-charcoal-soft/40 p-5 sm:p-6 transition-all duration-500 hover:border-gold/30 hover:bg-charcoal-soft",
+                    card.accent
+                  )}
+                >
+                  {cardInner(card)}
+                </a>
+              ) : (
+                <Link
+                  href={card.href}
+                  className={cn(
+                    "group relative flex flex-col border border-paper/10 bg-charcoal-soft/40 p-5 sm:p-6 transition-all duration-500 hover:border-gold/30 hover:bg-charcoal-soft",
+                    card.accent
+                  )}
+                >
+                  {cardInner(card)}
+                </Link>
+              )}
             </StaggerItem>
           ))}
         </Stagger>

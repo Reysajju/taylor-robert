@@ -90,12 +90,14 @@ export function SiteNav() {
               {l.label}
             </Link>
           ))}
-          <Link
-            href="/buy"
+          <a
+            href="https://www.amazon.com/WHERE-EVIL-DWELLS-PERDITION-AWAITS/dp/B0H2KK7RJQ"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative inline-flex items-center overflow-hidden border border-rust px-5 py-2.5 font-mono-dossier text-[0.7rem] tracking-label text-paper transition-all duration-300 hover:bg-rust hover:shadow-[0_0_20px_rgba(122,46,29,0.3)]"
           >
             <span className="relative z-10">Buy the Book</span>
-          </Link>
+          </a>
         </div>
 
         <button
@@ -170,13 +172,15 @@ export function SiteNav() {
           ))}
 
           {/* Buy CTA in mobile menu */}
-          <Link
-            href="/buy"
+          <a
+            href="https://www.amazon.com/WHERE-EVIL-DWELLS-PERDITION-AWAITS/dp/B0H2KK7RJQ"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setOpen(false)}
             className="mt-8 inline-flex items-center justify-center border border-rust bg-rust/10 px-6 py-4 font-mono-dossier text-[0.72rem] tracking-label text-paper transition-all duration-300 hover:bg-rust"
           >
             BUY THE BOOK
-          </Link>
+          </a>
 
           {/* Bottom metadata */}
           <div className="mt-auto pb-8 pt-8">
